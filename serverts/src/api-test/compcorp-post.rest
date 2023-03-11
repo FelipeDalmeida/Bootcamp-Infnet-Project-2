@@ -1,0 +1,12 @@
+POST  http://localhost:8080/compcorp/2
+Content-Type: application/json
+
+{
+        "Massa": 1111,
+        "IMC": 2222,
+        "Gordura_Corporal": 3333,
+        "Gordura_Visceral": 4444,
+        "Metabolismo_Basal": 5555,
+        "Musculos_Esqueleticos": 6666,
+        "Idade_Corporal": 7777
+}

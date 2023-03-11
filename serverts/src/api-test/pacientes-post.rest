@@ -1,0 +1,10 @@
+POST  http://localhost:8080/pacientes/
+Content-Type: application/json
+
+{
+    "Nome":"Felipe",
+    "Sobrenome":"Seabra",
+    "Idade":28,
+    "Sexo":"Masculino",
+    "Data_Nascimento":"18/02/1994"
+ }

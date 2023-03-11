@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "treinohardoce",
+  "private_key_id": "39429d5af88064483bb918a16c55143a1ed82f11",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCUsVmon6qj5h2x\npcHSwxg4ls34p6cRapThPbuf2kfs8KzOyWth4H6MP0wj4TIov8kcVK48p0XNph8l\nA+fDz0Hod5vLjXPJBuvPBvQlyXRWaTWR/qm2ycyB0B12zbnDkE0x0sbfA/yPFkFh\nIffBa4tjonrn+HNA8aNyThM4IbNznYO959h02vDJE9nK99ZZwxWvOSlE2HAY+8nQ\nfSGGOoXn4GZlaxW2XcZid0tUdbqT9uHjEnWeGVJH1WjGLXyG2VMfEfwKMFc9aC3K\n8U2fS/Io5ded1VVrCQNqwEyC3G9fytyEF8gVcdSYseUTqnj5gskYbp+PkO/+vUTW\nBg1QKA41AgMBAAECggEAAlFoIhPTIi5NL4lzpb3QMS77U7FcDmPIobZHqCyhSxVO\nwa6BfmDJ4up9smApWwSaYFcFnFZzOnXTgyKLc2cAvQdYUL+0xWEr6JSlgQ1MmKhC\njd3CzDcFzs7ta/5gXfxwPPhEjLzQLB7fCAzygtEStuE/5JaKnWw8Qw+VMcknYK8B\nhJN9kh42mCqIIbqbrIc66NoWx79INLxJBG97OHfsgfPVtL5LwYY9YGeAKhZa1fj9\nVq9L2NJ7VQLmh9a0C4qm/HG6RY+UI0dGgmmFKg1HKhYro4WAxytCh6pYgb3qE4iI\n4OcmIgbmD6emwzxkhvdCIkKTB2iGwy/8/jID8JjYhQKBgQDLEZKhgKYhuJ2LmWZm\nym3nHD/ySn/k4TzT+YPOoZPc0l35ZLeCHpcgAtvoJDBWbCaxJ//3mai3eoSIolmK\n05TM6Ngd6YPyHpwHrp0Xnvmt1scKxLORIluRXPlxIWss809nHwHfzOtLf8xy+453\nAbVln+R/tq+WRFXtrM+pfJ5oqwKBgQC7c14daQbGnetqG9VoF5V4DeuxTC719OMw\nIC7IFuVkisY/wU54qOY/JNZL0lgJSIPFkWbijNXL9RkyTx45zadIttc2welb9/Be\nJlgovqT8EKMrpCRyrhDUoWTskIcazg1FbRjSWyS1DxzM/wNtdOQU/uswo8mA449N\nl+EUEycknwKBgE3JHXHf5cNlBHRE/oTBZffxSk11XChAXxyTp3mvSwR7UKQHgIPH\nU/xfG/2AX0O7idayi8o8gfRGah4skkArbARR7PcITBKixwHqUSKLMvj0HKpzTpV5\no7m685HySyucx/2oUv93b2osOhSRZ7EOZn3XEaAaSog1BPVWDPXPVp6hAoGAMcMg\nuwIEsHl/431cG/QW0/YuGbU1ykmmfkIs6SVa5GQK2SYCJPoBlcW7tgkzIdPEV5CQ\nFZh5sVlxxO9IAORdgmo3m+vCfY3Gm9fmE3r45YmtJ4q9ukwHX8swtbRwiWcmEsYx\njrZvejl21dzlFguv+PrriNASUEsY4ept8BxdidUCgYEArWoFI1QOp5h5WWLzsATz\nS0ETyqEkT6RTyPwWVfDIip8I9GRSofh7dFUsThUZ/9I5RQJbWE5dh1i6ouSYWeE8\ny/erNISpwcNnoDl8Qm9b+aJt6f3ChcjPsOYy0skDqquGyDc1d0C7t9gHVRfp2RND\ncCX6vOY7O/umS+GwKVO0ckQ=\n-----END PRIVATE KEY-----\n",
+  "client_email": "treinohardcoreadmin@treinohardoce.iam.gserviceaccount.com",
+  "client_id": "113597132568981353327",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/treinohardcoreadmin%40treinohardoce.iam.gserviceaccount.com"
+}

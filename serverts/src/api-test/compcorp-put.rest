@@ -1,0 +1,12 @@
+PUT  http://localhost:8080/compcorp/2/0
+Content-Type: application/json
+
+{
+        "Massa": "55",
+        "IMC": "20",
+        "Gordura_Corporal": "12",
+        "Gordura_Visceral": "4",
+        "Metabolismo_Basal": "2000",
+        "Musculos_Esqueleticos": "66",
+        "Idade_Corporal": "19"
+}
