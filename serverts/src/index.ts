@@ -7,6 +7,7 @@ import {pacientes} from "./routes/pacientes"
 import { antropometrica } from './routes/avAntropometrica';
 import { compcorp } from './routes/avComposicaoCorportal';
 import { auth } from './routes/auth'
+import { pacientesController } from "./controllers/pacientesController";
 
 
 // Firebase Inicio
@@ -18,13 +19,13 @@ import firebase from 'firebase/compat/app';
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyDK1Q207NqneW0Aw9zLyzN0Ih5UDzWoo-E",
-    authDomain: "treinohard.firebaseapp.com",
-    projectId: "treinohard",
-    storageBucket: "treinohard.appspot.com",
-    messagingSenderId: "768996095831",
-    appId: "1:768996095831:web:0b7005133bc39ecd75f012",
-    measurementId: "G-3LDXRPQGX6"
+    apiKey: process.env.FIREBASE_APIKEY,
+    authDomain: process.env.FIREBASE_AUTHDOMAIN,
+    projectId: process.env.FIREBASE_PROJECTID,
+    storageBucket: process.env.FIREBASE_STORAGEBUCKET,
+    messagingSenderId: process.env.FIREBASE_MESSAGINGSENDERID,
+    appId: process.env.FIREBASE_APPID,
+    measurementId: process.env.FIREBASE_MEASUREMENTID
   };
   
 
@@ -39,7 +40,7 @@ const app=express();
 app.use(express.json());
 app.use(cors());
 app.use("/auth",auth)
-app.use("/pacientes",pacientes)
+app.use("/pacientes",pacientesController)
 app.use("/antropometrica",antropometrica)
 app.use("/compcorp",compcorp)
 

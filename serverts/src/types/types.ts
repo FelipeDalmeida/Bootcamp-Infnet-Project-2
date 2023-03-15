@@ -1,11 +1,11 @@
 export type Pacientes = {
     id?:number;
-    Nome:string;
-    Sobrenome:string;
-    Idade:number;
-    Sexo:string;
-    Data_Nascimento:string;
-    Data_Cadastro?:string | Date;
+    nome:string;
+    sobrenome:string;
+    idade:number;
+    sexo:string;
+    data_nascimento:string;
+    data_cadastro?:string | Date;
 }
 
 export type CompCorp = {

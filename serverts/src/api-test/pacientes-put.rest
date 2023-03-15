@@ -2,10 +2,8 @@ PUT  http://localhost:8080/pacientes/1
 Content-Type: application/json
 
 {
-    "Nome":"Rafaela",
-    "Sobrenome":"Kessler",
-    "Idade":30,
-    "Sexo":"Feminino",
-    "Data_Nascimento":"30/11/1992",
-    "Data_Avaliacao":"23/02/2023"
+    "nome":"Felipe Seabra d'Almeida",
+    "idade":29,
+    "sexo":"M",
+    "data_nascimento":"18/02/1994"
  }
