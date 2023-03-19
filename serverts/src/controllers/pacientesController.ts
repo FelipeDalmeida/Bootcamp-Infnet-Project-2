@@ -39,7 +39,7 @@ pacientesController.post('/', async (req, res) => {
 
 // Sobrescreve os dados de um paciente
 pacientesController.put('/:id', async (req, res) => {
-    const success = await pacientesRepository.alteraDadosPaciente(Number(req.params.id), req.body)
+    const success = await pacientesRepository.updateDadosPaciente(Number(req.params.id), req.body)
 
     if (success) {
         res.status(200).json({
@@ -47,6 +47,21 @@ pacientesController.put('/:id', async (req, res) => {
             data: {
                 ...req.body
             },
+        });
+    } else {
+        res.status(400).json({
+            success: false,
+        });
+
+    }
+})
+
+// Deleta um paciente
+pacientesController.delete("/:id", async (req, res) => {
+    const success = await pacientesRepository.deletaPaciente(Number(req.params.id))
+    if (success) {
+        res.status(200).json({
+            success: true,
         });
     } else {
         res.status(400).json({
@@ -68,13 +83,3 @@ pacientesController.put('/:id', async (req, res) => {
 //     })
 // })
 
-// // Deleta um paciente
-// pacientesController.delete("/:id", (req, res) => {
-//     deletaPaciente(Number(req.params.id))
-//     res.json({
-//         success: true,
-//         data: {
-//             id: Number(req.params.id),
-//         }
-//     })
-// })
