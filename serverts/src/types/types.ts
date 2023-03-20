@@ -21,15 +21,15 @@ export type CompCorp = {
 }
 
 export type Antropometrica = {
-    Estatura?: string | number;
-    Comprimento_Pe?: string | number;
-    Altura_Ombro?: string | number;
-    Largura_Ombro?: string | number;
-    Envergadura?: string | number;
-    Altura_Quadril?: string | number;
-    Largura_Quadril?: string | number;
-    Altura_Joelho?: string | number;
-    Altura_Tornozelo?: string | number;
-    Data_Avaliacao?:string|Date;
+    estatura?: string | number;
+    comprimento_pe?: string | number;
+    altura_ombro?: string | number;
+    largura_ombro?: string | number;
+    envergadura?: string | number;
+    altura_quadril?: string | number;
+    largura_quadril?: string | number;
+    altura_joelho?: string | number;
+    altura_tornozelo?: string | number;
+    data_avaliacao?:string|Date;
 }
 

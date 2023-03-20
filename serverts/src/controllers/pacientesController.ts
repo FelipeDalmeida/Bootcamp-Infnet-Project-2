@@ -21,18 +21,19 @@ pacientesController.post('/', async (req, res) => {
 
     const data = await pacientesRepository.criaPaciente({ ...req.body })
 
-    if (data) {
+    if (data.success) {
         res.status(201).json({
-            successes: true,
+            success: true,
             data: {
-                id: data.insertId,
+                id: data.id,
                 ...req.body
             }
 
         });
     } else {
         res.status(400).json({
-            successes: false,
+            success: false,
+            error:data.errors
         });
     }
 });

@@ -6,7 +6,7 @@ import { connectionConfig } from "../conectionConfig";
 
 
 async function createTables(){
-    const createTablesSql=await requireSQL("createTable.sql");
+    const createTablesSql=await requireSQL("createTables.sql");
     const conection=await mysql.createConnection(connectionConfig);
 
     await conection.query(createTablesSql);

@@ -2,8 +2,8 @@ POST  http://localhost:8080/pacientes/
 Content-Type: application/json
 
 {
-    "nome":"Felipe",
-    "idade":28,
-    "sexo":"M",
+    "nome":"Debora",
+    "idade":29,
+    "sexo":"Feminino",
     "data_nascimento":"18/02/1994"
  }
