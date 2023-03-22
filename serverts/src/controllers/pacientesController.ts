@@ -1,13 +1,23 @@
 import express from "express";
 import * as pacientesRepository from "../repositories/pacientesRepository";
 export const pacientesController = express.Router();
-
+import { pacientesLoadManySchema } from "../schemas/pacientesLoadManySchema";
 //lista todos os pacientes
 pacientesController.get('/', async (req, res) => {
+    const params=await pacientesLoadManySchema.safeParseAsync(req.query);
 
-    const Pacientes = await pacientesRepository.carregaPacientes()
+    if(params.success){
+        const Pacientes = await pacientesRepository.carregaPacientes(params.data)
+        res.status(200).json(Pacientes)
+    } else {
+        res.status(400).json({
+            success: false,
+            params
+        });
+    }
 
-    res.status(200).json(Pacientes)
+
+
 });
 
 //lista um paciente especifico

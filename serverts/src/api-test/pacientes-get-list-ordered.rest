@@ -1,0 +1,2 @@
+GET http://localhost:8080/pacientes?limit=25&orderby=desc
+Content-Type: application/json

@@ -2,18 +2,35 @@ import { databasePool } from "../database/databasePoll";
 import type { Pacientes } from "../types/types";
 import { pacienteSchema } from "../schemas/pacienteSchema";
 
-export const carregaPacientes = async (): Promise<Pacientes[]> => {
+
+export const carregaPacientes = async ({
+    orderby = "asc",
+    direction = "data_cadastro",
+    limit = 5,
+    offset = 0,
+}: {
+    orderby?: string;
+    direction?: string;
+    limit?: number;
+    offset?: number;
+}): Promise<{
+    count: number;
+    pacientes: Pacientes[];
+}> => {
     const connection = await databasePool.getConnection()
-    const [fields] = (await connection.query("select * from pacientes")) as any
+    const [pacientes] = (await connection.query(`select * from pacientes order by ${direction} ${orderby} limit ${limit} offset ${offset}`)) as any
+    const [[{count}]]=(await connection.query("select count(*) as count from pacientes")) as any;
     connection.release()
-    return fields
+    return {count,pacientes}
+
 }
 
 export const carregaPacienteID = async (id: number): Promise<Pacientes> => {
     const connection = await databasePool.getConnection()
-    const [fields] = (await connection.query("select * from pacientes where id=?", id)) as any
+    const [paciente] = (await connection.query("select * from pacientes where id=?", id)) as any
+
     connection.release()
-    return fields
+    return paciente
 }
 
 export const criaPaciente = async (data: Pacientes) => {
