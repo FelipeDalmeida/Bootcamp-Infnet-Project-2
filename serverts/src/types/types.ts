@@ -1,9 +1,11 @@
 export type Pacientes = {
     id?:number;
     nome:string;
-    sobrenome:string;
     idade:number;
     sexo:string;
+    email:string;
+    cpf:string;
+    celular:string;
     data_nascimento:string;
     data_cadastro?:string | Date;
 }

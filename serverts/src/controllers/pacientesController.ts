@@ -35,8 +35,7 @@ pacientesController.post('/', async (req, res) => {
         res.status(201).json({
             success: true,
             data: {
-                id: data.id,
-                ...req.body
+                ...data.data
             }
 
         });

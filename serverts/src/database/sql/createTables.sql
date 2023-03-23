@@ -6,6 +6,9 @@ CREATE TABLE pacientes (
     nome VARCHAR(255) NOT NULL,
     idade INT NOT NULL,
     sexo VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    celular VARCHAR(255) NOT NULL,
+    cpf VARCHAR(255) NOT NULL,
     data_nascimento VARCHAR(255) NOT NULL,
     data_cadastro DATETIME DEFAULT NOW()
 );

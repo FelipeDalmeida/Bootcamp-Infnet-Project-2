@@ -35,7 +35,7 @@ const Input =({label,type,name,id,placeholder,onChange,value,className,error,dis
    
     
     <div className="relative" >
-    <span className={(value || isActive || hover)?'bottom-8 pl-3 absolute':"pl-3 bottom-2.5 absolute"}><label htmlFor="price" className="font-semibold bg-white border-0 rounded-2xl px-2" >
+    <span className={(value || isActive || hover || type==="date")?'bottom-8 pl-3 absolute':"pl-3 bottom-2.5 absolute"}><label htmlFor="price" className="font-semibold bg-white border-0 rounded-2xl px-2" >
     {label}
     </label>
     </span>

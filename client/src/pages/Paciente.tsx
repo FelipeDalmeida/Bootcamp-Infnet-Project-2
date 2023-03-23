@@ -21,22 +21,26 @@ const PacientePage = ({ }) => {
 
     const text ={
         labelNome: "Nome",
-        labelSobrenome: "Sobrenome",
         labelIdade: "Idade",
         labelSexo: "Sexo",
         labelData_Nascimento: "Data de nasciemnto",
         labelData_Cadastro: "Data de Cadastro",
         labelButtonAtualizar:"Atualizar",
-        labelPen:"Editar Paciente"
+        labelPen:"Editar Paciente",
+        labelCpf:"CPF",
+        labelCelular:"Celular",
+        labelEmail:"E-mail"
     }
     const forminicial:Pacientes={
         
-            Nome: "",
-            Sobrenome: "",
-            Idade: "",
-            Sexo: "",
-            Data_Nascimento: "",     
-            Data_Cadastro:""
+            nome: "",
+            idade: "",
+            sexo: "",
+            data_nascimento: "",     
+            data_cadastro:"",
+            email:"",
+            cpf:"",
+            celular:""
     }
 
     const [form, setForm] = useState(forminicial);
@@ -55,7 +59,7 @@ const PacientePage = ({ }) => {
     const [,editPaciente]=useAxios<Pacientes>(
         {
             url: `/pacientes/${id}`,
-            method:"patch",
+            method:"put",
             data:{
                 ...form
             }
@@ -94,6 +98,7 @@ const PacientePage = ({ }) => {
    
     useEffect(()=>{
         getPaciente()
+        console.log(infoPaciente)
         console.log("Atualizado")
     },[])
 
@@ -104,18 +109,20 @@ const PacientePage = ({ }) => {
       }, [infoPaciente]);
 
     const inputs = [
-        <Input label={text.labelNome} onChange={(e: any) => setForm({ ...form, Nome: e.target.value })} value={form.Nome} disabled={disabled}/>,
-        <Input label={text.labelSobrenome} onChange={(e: any) => setForm({ ...form, Sobrenome: e.target.value })} value={form.Sobrenome} disabled={disabled}/>,
-        <Input label={text.labelIdade} onChange={(e: any) => setForm({ ...form, Idade: e.target.value })} value={form.Idade} disabled={disabled}/>,
-        <Input label={text.labelSexo} onChange={(e: any) => setForm({ ...form, Sexo: e.target.value })} value={form.Sexo} disabled={disabled}/>,
-        <Input label={text.labelData_Nascimento} onChange={(e: any) => setForm({ ...form, Data_Nascimento: e.target.value })} value={form.Data_Nascimento} disabled={disabled}/>,
-        <Input label={text.labelData_Cadastro} onChange={(e: any) => setForm({ ...form, Data_Cadastro: e.target.value })} value={form.Data_Cadastro} disabled={disabled}/>,
+        <Input label={text.labelNome} onChange={(e: any) => setForm({ ...form, nome: e.target.value })} value={form.nome} />,
+        <Input label={text.labelSexo} onChange={(e: any) => setForm({ ...form, sexo: e.target.value })} value={form.sexo} />,
+        <Input label={text.labelIdade} onChange={(e: any) => setForm({ ...form, idade: e.target.value })} value={form.idade} />,
+        <Input label={text.labelCpf} onChange={(e: any) => setForm({ ...form, cpf: e.target.value })} value={form.cpf} />,
+        <Input label={text.labelCelular} onChange={(e: any) => setForm({ ...form, celular: e.target.value })} value={form.celular} />,
+        <Input label={text.labelEmail} onChange={(e: any) => setForm({ ...form, email: e.target.value })} value={form.email} />,
+        <Input label={text.labelData_Nascimento} onChange={(e: any) => setForm({ ...form, data_nascimento: e.target.value })} value={form.data_nascimento} disabled={disabled}/>,
+        <Input label={text.labelData_Cadastro} onChange={(e: any) => setForm({ ...form, data_cadastro: e.target.value })} value={form.data_cadastro} disabled={disabled}/>,
     ]
 
     return <> <div className={"md:h-auto p-2 grid grid-cols-12 gap-4 "}>
         <div className={"relative my-10 pb-10 border border-slate-200 rounded-2xl shadow-2xl shadow-blue-500/50  box-border col-start-0 col-span-12 md:col-start-2 md:col-span-10 lg:col-start-3 lg:col-span-8 xxl:col-start-4 xxl:col-span-6"}>
         <form className={"   "}>
-            <Text className={"text-center mt-6 text-4xl"} type={"h1"} text={`${form.Nome} ${form.Sobrenome}`} />
+            <Text className={"text-center mt-6 text-4xl"} type={"h1"} text={`${form.nome}`} />
             <CriaForm inputs={inputs} className={"grid-cols-1 md:grid-cols-2 lg:grid-cols-3"} />
             
             

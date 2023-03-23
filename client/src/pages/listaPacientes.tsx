@@ -6,29 +6,41 @@ import { useEffect } from 'react';
 import { useNavigate } from "react-router";
 
 const ListaPacientes = ({ }) => {
- 
-    const navigate=useNavigate();
-    const goToPage=(page:string)=>{navigate(page)}
+
+    const navigate = useNavigate();
+    const goToPage = (page: string) => { navigate(page) }
 
 
-    const text={
-        title:"Pacientes",
-        Nome:"Nome",
-        Idade:"Idade",
-        Sexo:"Sexo",
-        Nascimento:"Nascimento",
-        semPacientes:"Sem pacientes cadastrados"
+    const text = {
+        title: "Pacientes",
+        Nome: "Nome",
+        Idade: "Idade",
+        Sexo: "Sexo",
+        Cadastro: "Data de Cadastro",
+        semPacientes: "Sem pacientes cadastrados"
     }
 
-    const [{ data: listaPacientes },setPacientes] = useAxios<Pacientes[]>({
-        url: "/pacientes",
-        method: "get",
-    });
+    const [
+        {
+            data: { count: pacientesCount, pacientes: listaPacientes } = {
+                count: 0,
+                pacientes: []
+            }
+        }
+        , setPacientes] = useAxios<{ count: number; pacientes: Pacientes[]; }>(
+            {
+                url: "/pacientes",
+                method: "get",
+            },
+            {
+                manual: true,
+            });
 
-    useEffect(()=>{
+    useEffect(() => {
         setPacientes()
+        console.log(listaPacientes)
         console.log("Atualizado")
-    },[])
+    }, [])
 
     return <div className={"h-full p-2 grid grid-cols-12 gap-4 "}>
 
@@ -39,23 +51,23 @@ const ListaPacientes = ({ }) => {
                 <div className={"self-center hidden sm:block"}><Text className={"font-bold"} text={text.Nome} /></div>
                 <div className={"self-center hidden sm:block"}><Text className={"font-bold"} text={text.Idade} /></div>
                 <div className={"self-center hidden sm:block"}><Text className={"font-bold"} text={text.Sexo} /></div>
-                <div className={"self-center hidden sm:block"}><Text className={"font-bold"} text={text.Nascimento} /></div>
+                <div className={"self-center hidden sm:block"}><Text className={"font-bold"} text={text.Cadastro} /></div>
                 <div className={"self-center hidden sm:block"}></div>
             </div>
 
-            <>{listaPacientes?(listaPacientes?.length>0)?listaPacientes.map(({ id, Nome, Sobrenome, Idade, Sexo, Data_Nascimento, Data_Cadastro }: Pacientes) => {
+            <>{listaPacientes ? (listaPacientes?.length > 0) ? listaPacientes.map(({ id, nome, idade, sexo, data_cadastro }: Pacientes) => {
 
                 return <div className={" border-b  border-b-blue-400  px-10 grid grid-cols-2 sm:grid-cols-5  gap-0 "} key={id}>
-                    <div className={"self-center"}><Text className={"sm:hidden font-bold"} text={`Nome:`} /><Text text={`${Nome} ${Sobrenome}`} /></div>
-                    <div className={"self-center"}><Text className={"sm:hidden font-bold"} text={`Idade:`} /><Text text={`${Idade}`} /></div>
-                    <div className={"self-center"}><Text className={"sm:hidden font-bold"} text={`Sexo:`} />{`${Sexo}`}</div>
-                    <div className={"self-center"}><Text className={"sm:hidden font-bold"} text={`Nascimento:`} />{`${Data_Nascimento}`}</div>
-                    <Button title={"Exibir"} className={"w-full col-start-0 col-span-2 sm:col-start-5 sm:w-30"} onClick={()=>goToPage(`/pacientes/${id}`)} />
+                    <div className={"self-center"}><Text className={"sm:hidden font-bold"} text={`${text.Nome}:`} /><Text text={`${nome}`} /></div>
+                    <div className={"self-center"}><Text className={"sm:hidden font-bold"} text={`${text.Idade}:`} /><Text text={`${idade}`} /></div>
+                    <div className={"self-center"}><Text className={"sm:hidden font-bold"} text={`${text.Sexo}:`} />{`${sexo}`}</div>
+                    <div className={"self-center"}><Text className={"sm:hidden font-bold"} text={`${text.Cadastro}:`} />{`${data_cadastro}`}</div>
+                    <Button title={"Exibir"} className={"w-full col-start-0 col-span-2 sm:col-start-5 sm:w-30"} onClick={() => goToPage(`/pacientes/${id}`)} />
                 </div>
 
 
-            }):<Text className={"text-rose-700 text-center my-10 text-3xl"} type={"h2"} text={text.semPacientes}  />:
-            <Text className={"text-rose-700 text-center my-10 text-3xl"} type={"h2"} text={text.semPacientes}  />}</>
+            }) : <Text className={"text-rose-700 text-center my-10 text-3xl"} type={"h2"} text={text.semPacientes} /> :
+                <Text className={"text-rose-700 text-center my-10 text-3xl"} type={"h2"} text={text.semPacientes} />}</>
 
 
 

@@ -2,8 +2,11 @@ PUT  http://localhost:8080/pacientes/1
 Content-Type: application/json
 
 {
-    "nome":"Felipe Seabra d'Almeida",
-    "idade":29,
-    "sexo":"M",
+    "nome":"Debora",
+    "idade":"29",
+    "sexo":"Feminino",
+    "celular":"(21)97878765",
+    "cpf":"12332143457",
+    "email":"blabla@hotmail.com",
     "data_nascimento":"18/02/1994"
  }

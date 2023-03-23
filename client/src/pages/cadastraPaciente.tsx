@@ -9,6 +9,9 @@ import { useNavigate } from "react-router";
 import { delay } from "../service/delay"
 
 
+//TODO: Adicionar select para sexo, date para data de nascimento e calcular idade automáticamente. Adicionar field e-mail
+
+
 const CadastraPaciente = ({ }) => {
 
     const navigate=useNavigate();
@@ -17,18 +20,22 @@ const CadastraPaciente = ({ }) => {
 
     const text={
         labelNome: "Nome",
-        labelSobrenome: "Sobrenome",
         labelIdade: "Idade",
         labelSexo: "Sexo",
         labelData_Nascimento: "Data de Nascimento",
+        labelCpf:"CPF",
+        labelCelular:"Celular",
+        labelEmail:"E-mail"
     }
     const [id,setID]=useState("")
     const [form, setForm] = useState({
-        Nome: "",
-        Sobrenome: "",
-        Idade: "",
-        Sexo: "",
-        Data_Nascimento: "",
+        nome: "",
+        idade: "",
+        sexo: "",
+        data_nascimento: "",
+        cpf:"",
+        email:"",
+        celular:""
     })
     const [ , cadastroPaciente] = useAxios(
         {
@@ -63,11 +70,13 @@ const CadastraPaciente = ({ }) => {
 
 
     const inputs = [
-        <Input label={text.labelNome} onChange={(e: any) => setForm({ ...form, Nome: e.target.value })} value={form.Nome} />,
-        <Input label={text.labelSobrenome} onChange={(e: any) => setForm({ ...form, Sobrenome: e.target.value })} value={form.Sobrenome} />,
-        <Input label={text.labelIdade} onChange={(e: any) => setForm({ ...form, Idade: e.target.value })} value={form.Idade} />,
-        <Input label={text.labelSexo} onChange={(e: any) => setForm({ ...form, Sexo: e.target.value })} value={form.Sexo} />,
-        <Input label={text.labelData_Nascimento} onChange={(e: any) => setForm({ ...form, Data_Nascimento: e.target.value })} value={form.Data_Nascimento} />,
+        <Input label={text.labelNome} onChange={(e: any) => setForm({ ...form, nome: e.target.value })} value={form.nome} />,
+        <Input label={text.labelSexo} onChange={(e: any) => setForm({ ...form, sexo: e.target.value })} value={form.sexo} />,
+        <Input label={text.labelIdade} onChange={(e: any) => setForm({ ...form, idade: e.target.value })} value={form.idade} />,
+        <Input label={text.labelCpf} onChange={(e: any) => setForm({ ...form, cpf: e.target.value })} value={form.cpf} />,
+        <Input label={text.labelCelular} onChange={(e: any) => setForm({ ...form, celular: e.target.value })} value={form.celular} />,
+        <Input label={text.labelEmail} onChange={(e: any) => setForm({ ...form, email: e.target.value })} value={form.email} />,
+        <Input type={"date"} label={text.labelData_Nascimento} onChange={(e: any) => setForm({ ...form, data_nascimento: e.target.value })} value={form.data_nascimento} />,
     ]
 
     return <div className={"h-[calc(100vh-theme(spacing.20))] md:h-auto p-2 grid grid-cols-12 gap-4 "}>

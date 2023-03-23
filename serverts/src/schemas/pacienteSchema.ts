@@ -41,13 +41,9 @@ const nome = z
     });
 
 const idade = z
-    .number()
-    .min(idadeMinLength, {
-        message: errors.idadeMinLength(idadeMinLength)
-    })
-    .max(idadeMaxLength, {
-        message: errors.idadeMaxLength(idadeMaxLength)
-    });
+    .string()
+    .transform((value)=>Number(value))
+    .refine((value)=>Number.isInteger(value) && value >=0 && value <=100)
 
 const sexo = z
     .string()
@@ -66,10 +62,20 @@ const data_nascimento = z
         message: errors.nascimentoMaxLength()
     });
 
+const email =z
+    .string()
+//TODO: Criar Regex
+const celular = z
+.string()
+//TODO: Criar Regex
+const cpf =z.string()
 
 export const pacienteSchema=z.object({
     nome,
     idade,
     sexo,
-    data_nascimento
+    data_nascimento,
+    email,
+    celular,
+    cpf
 })
