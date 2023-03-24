@@ -1,2 +1,2 @@
-GET http://localhost:8080/pacientes?limit=25&orderby=desc
+GET http://localhost:8080/pacientes?limit=25&orderby=id&search=159
 Content-Type: application/json

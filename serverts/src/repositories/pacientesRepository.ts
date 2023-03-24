@@ -4,21 +4,25 @@ import { pacienteSchema } from "../schemas/pacienteSchema";
 
 
 export const carregaPacientes = async ({
-    orderby = "asc",
-    direction = "data_cadastro",
+    orderby = "id",
+    direction = "asc",
     limit = 25,
     offset = 0,
+    search,
 }: {
     orderby?: string;
     direction?: string;
     limit?: number;
     offset?: number;
+    search?:string;
 }): Promise<{
     count: number;
     pacientes: Pacientes[];
 }> => {
     const connection = await databasePool.getConnection()
-    const [pacientes] = (await connection.query(`select * from pacientes order by ${direction} ${orderby} limit ${limit} offset ${offset}`)) as any
+    const [pacientes] = (await connection.query(`select * from pacientes 
+    ${search? `where nome like '%${search}%' or cpf like '%${search}%'`:""}
+    order by ${orderby} ${direction}  limit ${limit} offset ${offset}`)) as any
     const [[{count}]]=(await connection.query("select count(*) as count from pacientes")) as any;
     connection.release()
     return {count,pacientes}
@@ -76,7 +80,8 @@ export const updateDadosPaciente = async (id: number, data: Partial<Pacientes>) 
     const connection = await databasePool.getConnection()
 
 
-    const [response] = (await connection.query(`UPDATE pacientes SET nome=?, idade=?, sexo=?, data_nascimento=?, celular=?, email=?, cpf=? WHERE id=?;`, [data.nome, data.idade, data.sexo, data.data_nascimento, data.celular, data.email, data.cpf, id])) as any
+    const [response] = (await connection.query(`UPDATE pacientes SET nome=?, idade=?, sexo=?, data_nascimento=?, celular=?, email=?, cpf=? WHERE id=?;`, 
+    [data.nome, data.idade, data.sexo, data.data_nascimento, data.celular, data.email, data.cpf, id])) as any
 
     const success = response.affectedRows > 0
     connection.release()

@@ -10,7 +10,7 @@ export const pacientesLoadManySchema=z.object({
     orderby:z
     .string()
     .toLowerCase()
-    .regex(/^(id|data_cadastro)$/)
+    .regex(/^(id|data_cadastro|nome)$/)
     .optional(),
 
     limit:z
@@ -24,5 +24,11 @@ export const pacientesLoadManySchema=z.object({
     .string()
     .transform((value)=>Number(value))
     .refine((value)=>Number.isInteger(value) && value >=0)
+    .optional(),
+
+    
+    search: z
+    .string()
+    .max(120)
     .optional(),
 })
