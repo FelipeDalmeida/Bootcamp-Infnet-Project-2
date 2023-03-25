@@ -6,7 +6,7 @@ import Load from './components/load/load';
 import { useAxios } from '../src/service/useAxios'
 function App() {
 
-const [isAuth,setIsAuth]=useState(false)
+const [isAuth,setIsAuth]=useState(true) //TODO: Mudar valor para false após desenvolvimento - Mock
 
 
 const CadastraPaciente =lazy(()=>import('./pages/cadastraPaciente'))

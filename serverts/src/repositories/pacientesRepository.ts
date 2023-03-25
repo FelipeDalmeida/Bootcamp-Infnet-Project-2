@@ -6,7 +6,7 @@ import { pacienteSchema } from "../schemas/pacienteSchema";
 export const carregaPacientes = async ({
     orderby = "id",
     direction = "asc",
-    limit = 25,
+    limit = 10,
     offset = 0,
     search,
 }: {

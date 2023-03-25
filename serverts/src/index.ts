@@ -5,7 +5,7 @@ import express from 'express';
 import cors from 'cors';
 import {pacientes} from "./routes/pacientes"
 //import { antropometrica } from './routes/avAntropometrica';
-import { compcorp } from './routes/avComposicaoCorportal';
+//import { compcorp } from './routes/avComposicaoCorportal';
 import { auth } from './routes/auth'
 import { pacientesController } from "./controllers/pacientesController";
 
@@ -42,7 +42,7 @@ app.use(cors());
 app.use("/auth",auth)
 app.use("/pacientes",pacientesController)
 //app.use("/antropometrica",antropometrica)
-app.use("/compcorp",compcorp)
+//app.use("/compcorp",compcorp)
 
 
 const port =8080;

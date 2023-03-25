@@ -7,9 +7,9 @@ import { Pacientes } from "../types/types"
 import Text from "../components/text/text"
 import { useNavigate } from "react-router";
 import { delay } from "../service/delay"
+import Select from "../components/input/select"
 
-
-//TODO: Adicionar select para sexo, date para data de nascimento e calcular idade automáticamente. Adicionar field e-mail
+//TODO: calcular idade automáticamente.
 
 
 const CadastraPaciente = ({ }) => {
@@ -70,9 +70,15 @@ const CadastraPaciente = ({ }) => {
 
 
     const inputs = [
-        <Input label={text.labelNome} onChange={(e: any) => setForm({ ...form, nome: e.target.value })} value={form.nome} />,
-        <Input label={text.labelSexo} onChange={(e: any) => setForm({ ...form, sexo: e.target.value })} value={form.sexo} />,
+
+        <Input label={text.labelNome} onChange={(e: any) => setForm({ ...form, nome: e.target.value })} value={form.nome}/>,
+        // <Input label={text.labelSexo} onChange={(e: any) => setForm({ ...form, sexo: e.target.value })} value={form.sexo} />,
         <Input label={text.labelIdade} onChange={(e: any) => setForm({ ...form, idade: e.target.value })} value={form.idade} />,
+        <Select label={"Sexo"} value={form.sexo} onChange={(e: any) => setForm({ ...form, sexo: e.target.value })} options={[
+            <option value={"Masculino"}>Masculino</option>,
+            <option value={"Feminino"}>Feminino</option>,
+            <option value={""}></option>,]
+        }/>,
         <Input label={text.labelCpf} onChange={(e: any) => setForm({ ...form, cpf: e.target.value })} value={form.cpf} />,
         <Input label={text.labelCelular} onChange={(e: any) => setForm({ ...form, celular: e.target.value })} value={form.celular} />,
         <Input label={text.labelEmail} onChange={(e: any) => setForm({ ...form, email: e.target.value })} value={form.email} />,
@@ -80,7 +86,7 @@ const CadastraPaciente = ({ }) => {
     ]
 
     return <div className={"h-[calc(100vh-theme(spacing.20))] md:h-auto p-2 grid grid-cols-12 gap-4 "}>
-        <form className={"sm:relative my-10 pb-10 border border-slate-200 rounded-2xl shadow-2xl shadow-blue-500/50  box-border  col-start-0 col-span-12 md:col-start-2 md:col-span-10 lg:col-start-3 lg:col-span-8 xxl:col-start-4 xxl:col-span-6"}>
+        <form className={"sm:relative md:my-10 md:pb-10 border border-slate-200 rounded-2xl shadow-2xl shadow-blue-500/50  box-border  col-start-0 col-span-12 md:col-start-2 md:col-span-10 lg:col-start-3 lg:col-span-8 xxl:col-start-4 xxl:col-span-6"}>
             <Text className={"text-center mt-6 text-4xl"} type={"h1"} text={"Cadastro"} />
             <CriaForm inputs={inputs} className={"grid-cols-1 md:grid-cols-2 lg:grid-cols-3"} />
             <div className={"mx-10 "}>

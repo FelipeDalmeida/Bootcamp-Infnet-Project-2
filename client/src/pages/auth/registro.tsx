@@ -64,11 +64,11 @@ const Register = ({ setIsAuth }: any) => {
         <div className={"sm:relative my-10 pb-10 border border-slate-200 rounded-2xl shadow-2xl shadow-blue-500/50  box-border  col-start-0 col-span-12 md:col-start-4 md:col-span-6 lg:col-start-5 lg:col-span-4"}>
             <div className={"h-40 flex justify-center"}><Img img={Logo} /></div>
             <Text className={"text-center mt-6 text-4xl"} type={"h1"} text={text.labelTitle} />
-            <CriaForm inputs={inputs} className={"grid-cols-1"} />
+            <CriaForm inputs={inputs} className={"my-2 grid-cols-1"} />
 
             <div className={"mx-10 "}>
-                <Button title={text.labelButton} className={"m-0 p-2 w-full "} onClick={registar} />
-                <Button title={text.labelButtonLogin} className={"m-0 p-2 w-full "} onClick={() => { goToPage('/') }} />
+                <Button title={text.labelButton} className={"m-0 my-3 p-2 w-full "} onClick={registar} />
+                <Button title={text.labelButtonLogin} className={"m-0 my-3 p-2 w-full "} onClick={() => { goToPage('/') }} />
             </div>
         </div>
     </div>

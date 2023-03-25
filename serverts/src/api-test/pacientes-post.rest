@@ -2,11 +2,11 @@ POST  http://localhost:8080/pacientes/
 Content-Type: application/json
 
 {
-    "nome":"Felipe",
+    "nome":"Rafita",
     "idade":"29",
     "sexo":"Feminino",
     "celular":"(21)97878765",
-    "cpf":"1233214345",
+    "cpf":"11111111111",
     "email":"blabla@hotmail.com",
     "data_nascimento":"30/10/1994"
  }
