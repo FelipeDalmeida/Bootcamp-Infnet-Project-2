@@ -1,63 +1,65 @@
 import useAxios from "axios-hooks"
 import { useState } from "react"
-import Button from "../components/button/button"
-import CriaForm from "../components/input/criaform"
-import Input from "../components/input/input"
+import Button from "../components/Button"
+import CriaForm from "../components/Criaform"
+import Input from "../components/Input"
 import { CompCorp } from "../types/types"
-import Text from "../components/text/text"
+import Text from "../components/Text"
 import { useNavigate } from "react-router";
 import { delay } from "../service/delay"
 import { useParams } from "react-router-dom"
 
 
+const text = {
+    labelMassa: "Massa",
+    labelIMC: "IMC",
+    labelGordura_Corporal: "Gordura Corporal",
+    labelGordura_Visceral: "Gordural Visceral",
+    labelMetabolismo_Basal: "Metabolismo",
+    labelMusculos_Esqueleticos: "Musculos",
+    labelIdade_Corporal: "Idade Corportal",
+    labelButtonCadastro: "Cadastrar Avaliação",
+    labelTitle: "Cadastrar Avaliação"
+}
+
 const CadastraAvCompCorp = ({ }) => {
 
-    const navigate=useNavigate();
-    const goToPage=(page:string)=>{navigate(`/pacientes/${page}`)}
-    const params=useParams()
-    const id=params.id;
-    const text={
-        labelMassa:"Massa",
-        labelIMC:"IMC",
-        labelGordura_Corporal:"Gordura Corporal", 
-        labelGordura_Visceral:"Gordural Visceral", 
-        labelMetabolismo_Basal:"Metabolismo", 
-        labelMusculos_Esqueleticos:"Musculos", 
-        labelIdade_Corporal:"Idade Corportal", 
-        labelButtonCadastro:"Cadastrar Avaliação",
-        labelTitle:"Cadastrar Avaliação"
-    }
+    const navigate = useNavigate();
+    const goToPage = (page: string) => { navigate(`/pacientes/${page}`) }
+    const params = useParams()
+    const id = params.id;
+
 
     const [form, setForm] = useState({
-        Massa:"",
-        IMC:"",
-        Gordura_Corporal:"", 
-        Gordura_Visceral:"", 
-        Metabolismo_Basal:"", 
-        Musculos_Esqueleticos:"", 
-        Idade_Corporal:"",
+        Massa: "",
+        IMC: "",
+        Gordura_Corporal: "",
+        Gordura_Visceral: "",
+        Metabolismo_Basal: "",
+        Musculos_Esqueleticos: "",
+        Idade_Corporal: "",
     })
-    const [ , cadastroPaciente] = useAxios(
+    const [, cadastroPaciente] = useAxios(
         {
             url: `/compcorp/${id}`,
             method: 'post',
-            data:form,
-            
+            data: form,
+
         },
-        
+
         {
             manual: true,
         }
     )
 
-    const sendData = async (e:any) => {
+    const sendData = async (e: any) => {
         e.preventDefault();
         await cadastroPaciente()
-       
+
         goToPage(`${id}`)
-        
-        
-        
+
+
+
     }
 
 

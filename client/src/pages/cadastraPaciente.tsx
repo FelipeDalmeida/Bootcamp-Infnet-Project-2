@@ -1,84 +1,85 @@
 import useAxios from "axios-hooks"
 import { useState } from "react"
-import Button from "../components/button/button"
-import CriaForm from "../components/input/criaform"
-import Input from "../components/input/input"
+import Button from "../components/Button"
+import CriaForm from "../components/Criaform"
+import Input from "../components/Input"
 import { Pacientes } from "../types/types"
-import Text from "../components/text/text"
+import Text from "../components/Text"
 import { useNavigate } from "react-router";
 import { delay } from "../service/delay"
-import Select from "../components/input/select"
+import Select from "../components/Select"
 
 //TODO: calcular idade automáticamente.
 
+const text = {
+    labelNome: "Nome",
+    labelIdade: "Idade",
+    labelSexo: "Sexo",
+    labelData_Nascimento: "Data de Nascimento",
+    labelCpf: "CPF",
+    labelCelular: "Celular",
+    labelEmail: "E-mail"
+}
 
 const CadastraPaciente = ({ }) => {
 
-    const navigate=useNavigate();
-    const goToPage=(page:string)=>{navigate(`/pacientes/${page}`)}
+    const navigate = useNavigate();
+    const goToPage = (page: string) => { navigate(`/pacientes/${page}`) }
 
 
-    const text={
-        labelNome: "Nome",
-        labelIdade: "Idade",
-        labelSexo: "Sexo",
-        labelData_Nascimento: "Data de Nascimento",
-        labelCpf:"CPF",
-        labelCelular:"Celular",
-        labelEmail:"E-mail"
-    }
-    const [id,setID]=useState("")
+
+    const [id, setID] = useState("")
     const [form, setForm] = useState({
         nome: "",
         idade: "",
         sexo: "",
         data_nascimento: "",
-        cpf:"",
-        email:"",
-        celular:""
+        cpf: "",
+        email: "",
+        celular: ""
     })
-    const [ , cadastroPaciente] = useAxios(
+    const [, cadastroPaciente] = useAxios(
         {
             url: '/pacientes',
             method: 'post',
-            data:form,
-            
+            data: form,
+
         },
-        
+
         {
             manual: true,
         }
     )
 
-    const sendData = async (e:any) => {
+    const sendData = async (e: any) => {
         e.preventDefault();
         await cadastroPaciente()
-        .then(
-            function(response){
-            setID(response.data.data.id)
- 
-            
-             
-            
-        })
-       
+            .then(
+                function (response) {
+                    setID(response.data.data.id)
+
+
+
+
+                })
+
         goToPage("")
-        
-        
-        
+
+
+
     }
 
 
     const inputs = [
 
-        <Input label={text.labelNome} onChange={(e: any) => setForm({ ...form, nome: e.target.value })} value={form.nome}/>,
+        <Input label={text.labelNome} onChange={(e: any) => setForm({ ...form, nome: e.target.value })} value={form.nome} />,
         // <Input label={text.labelSexo} onChange={(e: any) => setForm({ ...form, sexo: e.target.value })} value={form.sexo} />,
         <Input label={text.labelIdade} onChange={(e: any) => setForm({ ...form, idade: e.target.value })} value={form.idade} />,
         <Select label={"Sexo"} value={form.sexo} onChange={(e: any) => setForm({ ...form, sexo: e.target.value })} options={[
             <option value={"Masculino"}>Masculino</option>,
             <option value={"Feminino"}>Feminino</option>,
             <option value={""}></option>,]
-        }/>,
+        } />,
         <Input label={text.labelCpf} onChange={(e: any) => setForm({ ...form, cpf: e.target.value })} value={form.cpf} />,
         <Input label={text.labelCelular} onChange={(e: any) => setForm({ ...form, celular: e.target.value })} value={form.celular} />,
         <Input label={text.labelEmail} onChange={(e: any) => setForm({ ...form, email: e.target.value })} value={form.email} />,

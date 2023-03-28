@@ -1,26 +1,27 @@
-import CriaForm from "../../components/input/criaform"
-import Input from "../../components/input/input"
-import Text from "../../components/text/text"
-import Button from "../../components/button/button"
+import CriaForm from "../../components/Criaform"
+import Input from "../../components/Input"
+import Text from "../../components/Text"
+import Button from "../../components/Button"
 import { useState } from "react"
-import Img from "../../components/img/img"
+import Img from "../../components/Img"
 import Logo from '../../assets/img/logo192.png'
 import { useNavigate } from "react-router-dom"
 import { useAxios } from "../../service/useAxios"
+
+const text = {
+    labelEmail: "E-mail",
+    labelSenha: "Senha",
+    labelEmailCheck: "Repita seu e-mail",
+    labelSenhaCheck: "Repita sua senha",
+    labelTitle: "Registro",
+    labelButton: "Registrar",
+    labelButtonLogin: "Ir para Login"
+}
 
 const Register = ({ setIsAuth }: any) => {
     const navigate = useNavigate();
     const goToPage = (page: string) => { navigate(`${page}`) }
 
-    const text = {
-        labelEmail: "E-mail",
-        labelSenha: "Senha",
-        labelEmailCheck: "Repita seu e-mail",
-        labelSenhaCheck: "Repita sua senha",
-        labelTitle: "Registro",
-        labelButton: "Registrar",
-        labelButtonLogin: "Ir para Login"
-    }
 
     const [registro, setRegistro] = useState({ email: "", senha: "", emailCheck: "", emailError: "", senhaCheck: "", senhaError: "", error: "" })
 

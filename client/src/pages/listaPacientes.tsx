@@ -1,7 +1,7 @@
-import Button from '../components/button/button';
+import Button from '../components/Button';
 import { useAxios } from '../service/useAxios'
 import { Pacientes } from '../types/types';
-import Text from '../components/text/text';
+import Text from '../components/Text';
 import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router";
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
@@ -9,23 +9,25 @@ import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 
 //TODO:Implementar busca e alterar limite
 
+const text = {
+    id: "Matrícula",
+    title: "Pacientes",
+    Nome: "Nome",
+    Idade: "Idade",
+    Sexo: "Sexo",
+    Cadastro: "Data de Cadastro",
+    semPacientes: "Sem pacientes cadastrados",
+    btnNext: `Próximo `,
+    btnPrevious: "Anterior"
+}
+
 const ListaPacientes = ({ }) => {
 
     const navigate = useNavigate();
     const goToPage = (page: string) => { navigate(page) }
 
 
-    const text = {
-        id: "Matrícula",
-        title: "Pacientes",
-        Nome: "Nome",
-        Idade: "Idade",
-        Sexo: "Sexo",
-        Cadastro: "Data de Cadastro",
-        semPacientes: "Sem pacientes cadastrados",
-        btnNext: `Próximo `,
-        btnPrevious: "Anterior"
-    }
+
 
     const [pacientesParams, setPacientesParams] = useState({
         offset: 0,

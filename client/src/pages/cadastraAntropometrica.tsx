@@ -1,34 +1,36 @@
 import useAxios from "axios-hooks"
 import { useState } from "react"
-import Button from "../components/button/button"
-import CriaForm from "../components/input/criaform"
-import Input from "../components/input/input"
+import Button from "../components/Button"
+import CriaForm from "../components/Criaform"
+import Input from "../components/Input"
 import { Antropometrica } from "../types/types"
-import Text from "../components/text/text"
+import Text from "../components/Text"
 import { useNavigate } from "react-router";
 import { useParams } from "react-router-dom"
 
 
+const text = {
+    labelEstatura: "Estatura",
+    labelComprimento_Pe: "Comprimento do Pé",
+    labelAltura_Ombro: "Altura do Ombro",
+    labelLargura_Ombro: "Largura do Ombro",
+    labelEnvergadura: "Envergadura",
+    labelAltura_Quadril: "Altura do Quadril",
+    labelLargura_Quadril: "Largura do Quadril",
+    labelAltura_Joelho: "Altura do Joelho",
+    labelAltura_Tornozelo: "Altura do Tornozelo",
+    labelNoList: "Sem avaliações cadastradas",
+    labelButtonCadastro: "Cadastrar Avaliação",
+    labelTitle: "Cadastrar Avaliação"
+}
+
 const CadastraAvAntropometrica = ({ }) => {
 
-    const navigate=useNavigate();
-    const goToPage=(page:string)=>{navigate(`/pacientes/${page}`)}
-    const params=useParams()
-    const id=params.id;
-    const text={
-        labelEstatura:"Estatura",
-        labelComprimento_Pe:"Comprimento do Pé",
-        labelAltura_Ombro:"Altura do Ombro", 
-        labelLargura_Ombro:"Largura do Ombro", 
-        labelEnvergadura:"Envergadura", 
-        labelAltura_Quadril:"Altura do Quadril", 
-        labelLargura_Quadril:"Largura do Quadril", 
-        labelAltura_Joelho:"Altura do Joelho",
-        labelAltura_Tornozelo:"Altura do Tornozelo",
-        labelNoList:"Sem avaliações cadastradas",
-        labelButtonCadastro:"Cadastrar Avaliação",
-        labelTitle:"Cadastrar Avaliação"
-    }
+    const navigate = useNavigate();
+    const goToPage = (page: string) => { navigate(`/pacientes/${page}`) }
+    const params = useParams()
+    const id = params.id;
+
 
     const [form, setForm] = useState({
         Estatura: "",
@@ -41,27 +43,27 @@ const CadastraAvAntropometrica = ({ }) => {
         Altura_Joelho: "",
         Altura_Tornozelo: "",
     })
-    const [ , cadastroAntropometrica] = useAxios(
+    const [, cadastroAntropometrica] = useAxios(
         {
             url: `/antropometrica/${id}`,
             method: 'post',
-            data:form,
-            
+            data: form,
+
         },
-        
+
         {
             manual: true,
         }
     )
 
-    const sendData = async (e:any) => {
+    const sendData = async (e: any) => {
         e.preventDefault();
         await cadastroAntropometrica()
-       
+
         goToPage(`${id}`)
-        
-        
-        
+
+
+
     }
 
     const inputs = [

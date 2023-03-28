@@ -1,11 +1,25 @@
-import Button from '../button/button';
-import { useAxios } from '../../service/useAxios'
-import type { CompCorp } from '../../types/types';
-import Text from '../text/text';
+import Button from './Button';
+import { useAxios } from '../service/useAxios'
+import type { CompCorp } from '../types/types';
+import Text from './Text';
 import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router";
 import { useParams } from 'react-router-dom';
 import { FaPlusCircle } from 'react-icons/fa';
+
+const text={
+    labelMassa:"Massa",
+    labelIMC:"IMC",
+    labelGordura_Corporal:"Gordura Corporal", 
+    labelGordura_Visceral:"Gordural Visceral", 
+    labelMetabolismo_Basal:"Metabolismo", 
+    labelMusculos_Esqueleticos:"Musculos", 
+    labelIdade_Corporal:"Idade Corportal", 
+    labelData_Avaliacao:"Data",
+    labelTitle:"Avaliação de Composição Corporal",
+    labelNoList:"Sem avaliações cadastradas",
+    labelButtonCadastrar:"Cadastar Avaliação"
+}
 
 const ListaCompCorp = ({ }) => {
  
@@ -14,19 +28,7 @@ const ListaCompCorp = ({ }) => {
     const params=useParams()
     const id=params.id;
 
-    const text={
-        labelMassa:"Massa",
-        labelIMC:"IMC",
-        labelGordura_Corporal:"Gordura Corporal", 
-        labelGordura_Visceral:"Gordural Visceral", 
-        labelMetabolismo_Basal:"Metabolismo", 
-        labelMusculos_Esqueleticos:"Musculos", 
-        labelIdade_Corporal:"Idade Corportal", 
-        labelData_Avaliacao:"Data",
-        labelTitle:"Avaliação de Composição Corporal",
-        labelNoList:"Sem avaliações cadastradas",
-        labelButtonCadastrar:"Cadastar Avaliação"
-    }
+
 
     const [{ data: listaAvCompCorp },setAvCompCorp] = useAxios<CompCorp[]>({
         url: `/compcorp/all/${id}`,

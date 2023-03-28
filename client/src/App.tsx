@@ -1,23 +1,23 @@
 import {lazy, Suspense, useState, useEffect} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import Header from './pages/header';
-import Load from './components/load/load';
+import Header from './pages/Header';
+import Load from './components/load/Load';
 import { useAxios } from '../src/service/useAxios'
 function App() {
 
 const [isAuth,setIsAuth]=useState(true) //TODO: Mudar valor para false após desenvolvimento - Mock
 
 
-const CadastraPaciente =lazy(()=>import('./pages/cadastraPaciente'))
-const ListaPacientes =lazy(()=>import('./pages/listaPacientes'))
+const CadastraPaciente =lazy(()=>import('./pages/CadastraPaciente'))
+const ListaPacientes =lazy(()=>import('./pages/ListaPacientes'))
 const PacientePage=lazy(()=>import('./pages/Paciente'))
-const CadastraAvCompCorp = lazy(()=>import('./pages/cadastraCompCorp'))
-const AvCompCorp =lazy(()=>import('./pages/compcorp'))
-const CadastraAvAntropometrica=lazy(()=>import('./pages/cadastraAntropometrica'))
-const AvAntropometrica =lazy(()=>import('./pages/antropometrica'))
-const Login =lazy(()=>import('./pages/auth/login'))
-const Register =lazy(()=>import('./pages/auth/registro'))
+const CadastraAvCompCorp = lazy(()=>import('./pages/CadastraCompCorp'))
+const AvCompCorp =lazy(()=>import('./pages/CompCorp'))
+const CadastraAvAntropometrica=lazy(()=>import('./pages/CadastraAntropometrica'))
+const AvAntropometrica =lazy(()=>import('./pages/Antropometrica'))
+const Login =lazy(()=>import('./pages/auth/Login'))
+const Register =lazy(()=>import('./pages/auth/Registro'))
 
 if(!isAuth){ 
   return ( <Router>   

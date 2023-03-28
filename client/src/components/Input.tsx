@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
-import PropTypes from 'prop-types'
+import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 
-interface MessageProps {
+interface InputProps {
   label: string;
   type?: string;
   name?: string;
@@ -17,7 +16,7 @@ interface MessageProps {
   disabled?: boolean
 }
 
-const Input = ({ label, type, name, id, placeholder, onChange, value, className, error, disabled }: MessageProps) => {
+const Input = ({ label, type, name, id, placeholder, onChange, value, className, error, disabled }: InputProps) => {
 
   const [hover, setHover] = useState(false)
   const [showPassorwd, setShowPassword] = useState(false)
@@ -50,18 +49,6 @@ const Input = ({ label, type, name, id, placeholder, onChange, value, className,
     </div>
     <p className="pl-2 text-rose-600">{error ? error : ""}</p>
   </div>
-}
-
-Input.propTypes = {
-  type: PropTypes.string,
-  label: PropTypes.string,
-  id: PropTypes.string,
-  name: PropTypes.string,
-  onChange: PropTypes.func,
-  className: PropTypes.string,
-  value: PropTypes.string,
-  error: PropTypes.string,
-  disabled: PropTypes.bool
 }
 
 Input.defaultProps = {

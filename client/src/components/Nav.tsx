@@ -1,14 +1,13 @@
-import Img from "../img/img";
-import Logo from "../../assets/img/logo192.png"
+import Img from "./Img";
+import Logo from "../assets/img/logo192.png"
 import { FaBars, FaTimes } from "react-icons/fa";
-import Button from "../button/button";
 import { useState } from "react";
 
 interface NaVProps {
 
     className?: string;
-    anchor?:any;
-    anchor2?:any
+    anchor?: any;
+    anchor2?: any
 
 }
 
@@ -17,7 +16,7 @@ const anchor2 = [<a>{"Titulo 4"}</a>, <a>{"Titulo 5"}</a>]
 
 
 
-const Nav = ({ className,anchor,anchor2 }: NaVProps) => {
+const Nav = ({ className, anchor, anchor2 }: NaVProps) => {
 
     const [navMobile, setNavMobile] = useState(false)
 
