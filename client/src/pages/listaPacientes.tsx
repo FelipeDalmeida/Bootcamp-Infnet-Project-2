@@ -4,9 +4,11 @@ import { Pacientes } from '../types/types';
 import Text from '../components/Text';
 import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router";
-import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
+import { FaAngleDoubleLeft, FaAngleDoubleRight, FaTools } from 'react-icons/fa';
 import Input from '../components/Input';
 import Search from '../components/Search';
+import Tools from '../components/Tools';
+import Select from '../components/Select';
 
 
 //TODO:Implementar busca e alterar limite
@@ -21,7 +23,10 @@ const text = {
     semPacientes: "Sem pacientes cadastrados",
     btnNext: `Próximo `,
     btnPrevious: "Anterior",
-    search: "Buscar Paciente"
+    search: "Buscar Paciente",
+    tools: "Configurações de pesquisa",
+    ordenar: "Ordenar por",
+    changeConfig:"Salvar",
 }
 
 const ListaPacientes = ({ }) => {
@@ -36,6 +41,7 @@ const ListaPacientes = ({ }) => {
         offset: 0,
         limit: 5,
         search: "",
+        orderby: "id",
     })
 
     const [btnDisable, isBtnDisabled] = useState({
@@ -162,11 +168,30 @@ const ListaPacientes = ({ }) => {
 
         <div className={"relative md:my-10 md:pb-10 border border-slate-200 rounded-2xl shadow-2xl shadow-blue-500/50  box-border  col-start-0 col-span-12 md:col-start-2 md:col-span-10 lg:col-start-3 lg:col-span-8 xxl:col-start-4 xxl:col-span-6"}>
             <Text className={"text-center my-10 text-4xl"} type={"h1"} text={text.title} />
+            <Tools
+                modalTitle={text.tools}
+                content={
+                    <div>
+                        <Select
+                            label={text.ordenar}
+                            options={
+                                [
+                                    <option value={"nome"}>Nome</option>,
+                                    <option value={"data_cadastro"}>Cadastro</option>,
+                                    <option value={"id"}>Matrícula</option>
+                                ]
+                            }
+                        /> //@TODO:Terminar modal com seleção de limite de query
+                    </div>}
+                lowerContent={
+                    <Button title={text.changeConfig}/>
+                }
+            />
             <Search label={text.search}
                 classNameComponent={"sm:absolute sm:top-10 sm:right-10"}
                 value={pacientesParams.search}
                 onChange={(e) => setPacientesParams({ ...pacientesParams, search: e.target.value })}
-                onClick={()=>buscaPaciente()}
+                onClick={() => buscaPaciente()}
             />
             <div className={"border-b  border-b-blue-400 px-10 grid grid-cols-2 sm:grid-cols-5  gap-0"}>
                 {listaPacientes?.length > 0 ? <>
