@@ -13,10 +13,11 @@ interface InputProps {
   value?: string | number;
   className?: string;
   error?: string;
-  disabled?: boolean
+  disabled?: boolean;
+  divclass?:string;
 }
 
-const Input = ({ label, type, name, id, placeholder, onChange, value, className, error, disabled }: InputProps) => {
+const Input = ({ label, type, name, id, placeholder, onChange, value, className, error, disabled, divclass}: InputProps) => {
 
   const [hover, setHover] = useState(false)
   const [showPassorwd, setShowPassword] = useState(false)
@@ -25,12 +26,9 @@ const Input = ({ label, type, name, id, placeholder, onChange, value, className,
 
 
 
-  className = `${className} m-2`
 
-
-
-  return <div>
-    <div className={`${className} m-2 relative`} onMouseEnter={() => { setHover(true) }} onMouseLeave={() => { setHover(false) }} onFocus={() => { setIsActive(true) }} onBlur={() => { setIsActive(false) }}>
+  return <div className={divclass}>
+    <div className={`m-2 relative ${className} `} onMouseEnter={() => { setHover(true) }} onMouseLeave={() => { setHover(false) }} onFocus={() => { setIsActive(true) }} onBlur={() => { setIsActive(false) }}>
       <span className={(value || isActive || hover || type === "date") ? 'bottom-8 pl-3 absolute' : "pl-3 bottom-2.5 absolute"}><label className="font-semibold bg-white border-0 rounded-2xl px-2" >
         {label}
       </label>

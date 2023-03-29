@@ -5,6 +5,8 @@ import Text from '../components/Text';
 import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router";
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
+import Input from '../components/Input';
+import Search from '../components/Search';
 
 
 //TODO:Implementar busca e alterar limite
@@ -18,7 +20,8 @@ const text = {
     Cadastro: "Data de Cadastro",
     semPacientes: "Sem pacientes cadastrados",
     btnNext: `Próximo `,
-    btnPrevious: "Anterior"
+    btnPrevious: "Anterior",
+    search: "Buscar Paciente"
 }
 
 const ListaPacientes = ({ }) => {
@@ -32,6 +35,7 @@ const ListaPacientes = ({ }) => {
     const [pacientesParams, setPacientesParams] = useState({
         offset: 0,
         limit: 5,
+        search: "",
     })
 
     const [btnDisable, isBtnDisabled] = useState({
@@ -132,6 +136,12 @@ const ListaPacientes = ({ }) => {
     }
 
 
+    const buscaPaciente = async () => {
+        await getPacientes({
+            params: pacientesParams,
+        })
+    }
+
     useEffect(() => {
         getPacientes({
             params: pacientesParams,
@@ -150,8 +160,14 @@ const ListaPacientes = ({ }) => {
 
     return <div className={"h-full p-2 grid grid-cols-12 gap-4 "}>
 
-        <div className={"relative my-10 py-10 border border-slate-200 rounded-2xl shadow-2xl shadow-blue-500/50  box-border  col-start-0 col-span-12 md:col-start-2 md:col-span-10 lg:col-start-3 lg:col-span-8 xxl:col-start-4 xxl:col-span-6"}>
-            <Text className={"text-center mb-10 text-4xl"} type={"h1"} text={text.title} />
+        <div className={"relative md:my-10 md:pb-10 border border-slate-200 rounded-2xl shadow-2xl shadow-blue-500/50  box-border  col-start-0 col-span-12 md:col-start-2 md:col-span-10 lg:col-start-3 lg:col-span-8 xxl:col-start-4 xxl:col-span-6"}>
+            <Text className={"text-center my-10 text-4xl"} type={"h1"} text={text.title} />
+            <Search label={text.search}
+                classNameComponent={"sm:absolute sm:top-10 sm:right-10"}
+                value={pacientesParams.search}
+                onChange={(e) => setPacientesParams({ ...pacientesParams, search: e.target.value })}
+                onClick={()=>buscaPaciente()}
+            />
             <div className={"border-b  border-b-blue-400 px-10 grid grid-cols-2 sm:grid-cols-5  gap-0"}>
                 {listaPacientes?.length > 0 ? <>
                     <div className={"self-center hidden sm:block"}><Text className={"font-bold"} text={text.Nome} /></div>

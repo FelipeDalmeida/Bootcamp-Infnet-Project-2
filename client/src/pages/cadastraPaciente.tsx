@@ -73,7 +73,6 @@ const CadastraPaciente = ({ }) => {
     const inputs = [
 
         <Input label={text.labelNome} onChange={(e: any) => setForm({ ...form, nome: e.target.value })} value={form.nome} />,
-        // <Input label={text.labelSexo} onChange={(e: any) => setForm({ ...form, sexo: e.target.value })} value={form.sexo} />,
         <Input label={text.labelIdade} onChange={(e: any) => setForm({ ...form, idade: e.target.value })} value={form.idade} />,
         <Select label={"Sexo"} value={form.sexo} onChange={(e: any) => setForm({ ...form, sexo: e.target.value })} options={[
             <option value={"Masculino"}>Masculino</option>,
