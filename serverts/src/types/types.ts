@@ -11,27 +11,27 @@ export type Pacientes = {
 }
 
 export type CompCorp = {
-    Massa: string | number;
-    IMC: string | number;
-    Gordura_Corporal: string | number;
-    Gordura_Visceral: string | number;
-    Metabolismo_Basal: string | number;
-    Musculos_Esqueleticos: string | number;
-    Idade_Corporal: string | number;
-    Data_Avaliacao?:string|Date;
+    massa: number |string;
+    imc: number|string;
+    gordura_corporal: number|string;
+    gordura_visceral: number|string;
+    metabolismo_basal: number|string;
+    musculos_esqueleticos: number|string;
+    idade_corporal: number|string;
+    data_avaliacao?:string;
 
 }
 
 export type Antropometrica = {
-    estatura?: string | number;
-    comprimento_pe?: string | number;
-    altura_ombro?: string | number;
-    largura_ombro?: string | number;
-    envergadura?: string | number;
-    altura_quadril?: string | number;
-    largura_quadril?: string | number;
-    altura_joelho?: string | number;
-    altura_tornozelo?: string | number;
-    data_avaliacao?:string|Date;
+    estatura?: number|string;
+    comprimento_pe?: number|string;
+    altura_ombro?: number|string;
+    largura_ombro?: number|string;
+    envergadura?: number|string;
+    altura_quadril?: number|string;
+    largura_quadril?: number|string;
+    altura_joelho?: number|string;
+    altura_tornozelo?: number|string;
+    data_avaliacao?:string;
 }
 

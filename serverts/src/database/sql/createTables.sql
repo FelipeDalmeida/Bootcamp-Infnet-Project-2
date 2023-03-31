@@ -26,5 +26,18 @@ CREATE TABLE avantropometrica (
     altura_joelho INT NOT NULL,
     altura_tornozelo INT NOT NULL,
     data_avaliacao DATETIME DEFAULT NOW(),
-    FOREIGN KEY (paciente_id) REFERENCES pacientes(id)
+    FOREIGN KEY (paciente_id) REFERENCES pacientes(id) ON DELETE CASCADE
+);
+
+CREATE TABLE compcorp (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    paciente_id INT NOT NULL,
+    imc INT NOT NULL,
+    gordura_corporal INT NOT NULL,
+    gordura_visceral INT NOT NULL,
+    metabolismo_basal INT NOT NULL,
+    musculos_esqueleticos INT NOT NULL,
+    idade_corporal INT NOT NULL,
+    data_avaliacao DATETIME DEFAULT NOW(),
+    FOREIGN KEY (paciente_id) REFERENCES pacientes(id) ON DELETE CASCADE
 );
