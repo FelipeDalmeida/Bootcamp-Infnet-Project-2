@@ -8,14 +8,16 @@ interface ToolsProps {
     modalTitle?:string;
     content?:any;
     lowerContent?:any;
+    openModal:boolean;
+    setOpenModal:any;
 }
 
 
 
 
-const Tools = ({modalTitle,content,lowerContent}:ToolsProps) => {
+const Tools = ({modalTitle,content,lowerContent,openModal,setOpenModal}:ToolsProps) => {
 
-    const [openModal, setOpenModal] = useState(false)
+
 
     
 

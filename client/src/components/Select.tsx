@@ -20,7 +20,7 @@ const Select = ({ label, name, id, options, onChange, value, className, disabled
 
 
   return <div className={`${className} m-2 relative`}>
-    <span className={value ? 'bottom-8 pl-3 absolute' : "pl-3 bottom-2.5 absolute"}><label className="relative z-10 font-semibold bg-white border-0 rounded-2xl px-2" >
+    <span className={value ? 'bottom-8 left-1 pl-3 absolute' : "pl-3 bottom-2.5 absolute"}><label className="relative z-10 font-semibold bg-white border-0 rounded-2xl px-2" >
       {label}
     </label>
     </span>

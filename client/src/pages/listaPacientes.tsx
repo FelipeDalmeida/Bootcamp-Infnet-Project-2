@@ -25,8 +25,9 @@ const text = {
     btnPrevious: "Anterior",
     search: "Buscar Paciente",
     tools: "Configurações de pesquisa",
-    ordenar: "Ordenar por",
-    changeConfig:"Salvar",
+    orderby: "Ordenar por",
+    limit: "Quantidade",
+    changeConfig: "OK",
 }
 
 const ListaPacientes = ({ }) => {
@@ -34,7 +35,7 @@ const ListaPacientes = ({ }) => {
     const navigate = useNavigate();
     const goToPage = (page: string) => { navigate(page) }
 
-
+    const [openModal, setOpenModal] = useState(false)
 
 
     const [pacientesParams, setPacientesParams] = useState({
@@ -146,6 +147,17 @@ const ListaPacientes = ({ }) => {
         await getPacientes({
             params: pacientesParams,
         })
+        if (pacientesParams.limit >= Number(pacientesCount)) {
+            isBtnDisabled({
+                btnNext: true,
+                btnPrevious: true,
+            })
+        } else if (pacientesParams.limit <= Number(pacientesCount)) {
+            isBtnDisabled({
+                ...btnDisable,
+                btnNext: false,
+            })
+        }
     }
 
     useEffect(() => {
@@ -157,6 +169,11 @@ const ListaPacientes = ({ }) => {
                     btnNext: true,
                     btnPrevious: true,
                 })
+            } else if (pacientesParams.limit <= Number(pacientesCount)) {
+                isBtnDisabled({
+                    ...btnDisable,
+                    btnNext: false,
+                })
             }
 
         })
@@ -164,16 +181,36 @@ const ListaPacientes = ({ }) => {
 
     }, [])
 
+    // useEffect(()=>{
+    //     console.log(pacientesCount)
+    //     if (pacientesParams.limit >= Number(pacientesCount)) {
+    //         isBtnDisabled({
+    //             btnNext: true,
+    //             btnPrevious: true,
+    //         }) 
+    //     } else if(pacientesParams.limit <= Number(pacientesCount)){
+    //         isBtnDisabled({
+    //             ...btnDisable,
+    //             btnNext: true,
+    //         }) 
+    //     }
+    // },[pacientesParams.limit])
+
     return <div className={"h-full p-2 grid grid-cols-12 gap-4 "}>
 
         <div className={"relative md:my-10 md:pb-10 border border-slate-200 rounded-2xl shadow-2xl shadow-blue-500/50  box-border  col-start-0 col-span-12 md:col-start-2 md:col-span-10 lg:col-start-3 lg:col-span-8 xxl:col-start-4 xxl:col-span-6"}>
             <Text className={"text-center my-10 text-4xl"} type={"h1"} text={text.title} />
             <Tools
+                openModal={openModal}
+                setOpenModal={setOpenModal}
                 modalTitle={text.tools}
                 content={
-                    <div>
+                    <div className={"grid grid-cols-12 gap-4"}>
                         <Select
-                            label={text.ordenar}
+                            value={pacientesParams.orderby}
+                            onChange={(e) => { setPacientesParams({ ...pacientesParams, orderby: e.target.value }) }}
+                            className={"col-span-12 md:col-span-6"}
+                            label={text.orderby}
                             options={
                                 [
                                     <option value={"nome"}>Nome</option>,
@@ -181,10 +218,25 @@ const ListaPacientes = ({ }) => {
                                     <option value={"id"}>Matrícula</option>
                                 ]
                             }
-                        /> //@TODO:Terminar modal com seleção de limite de query
+                        />
+                        <Select
+                            value={pacientesParams.limit}
+                            onChange={(e) => { setPacientesParams({ ...pacientesParams, limit: e.target.value }) }}
+                            className={"col-span-12 md:col-span-6"}
+                            label={text.limit}
+                            options={
+                                [
+                                    <option value={5}>5</option>,
+                                    <option value={10}>10</option>,
+                                    <option value={15}>15</option>,
+                                    <option value={20}>20</option>,
+                                    <option value={25}>25</option>
+                                ]
+                            }
+                        />
                     </div>}
                 lowerContent={
-                    <Button title={text.changeConfig}/>
+                    <Button title={text.changeConfig} onClick={() => { buscaPaciente(); setOpenModal(false) }} />
                 }
             />
             <Search label={text.search}
