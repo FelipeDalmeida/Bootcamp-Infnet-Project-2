@@ -1,2 +1,2 @@
-GET http://localhost:8080/compcorp/1/1
+GET http://localhost:8080/compcorp/1
 Content-Type: application/json

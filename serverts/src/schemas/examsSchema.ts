@@ -2,10 +2,6 @@ import z from 'zod'
 
 
 export const avAntropometricaSchema = z.object({
-    // paciente_id:z
-    // .string()
-    // .transform((value) => Number(value)),
-
     estatura:z
     .number()
     .refine((value) => Number.isInteger(value) && value >= 0 && value <= 250),
@@ -91,4 +87,71 @@ export const avAntropometricaSchemaPost = z.object({
     .transform((value)=>Number(value))
     .refine((value) => Number.isInteger(value) && value >= 0 && value <= 200),
     
+});
+
+export const compcorpSchema = z.object({
+    massa:z
+    .number()
+    .refine((value) => Number.isInteger(value) && value >= 0 && value <= 250),
+
+    imc:z
+    .number()
+    .refine((value) => Number.isInteger(value) && value >= 0 && value <= 60),
+
+    gordura_corporal:z
+    .number()
+    .refine((value) => Number.isInteger(value) && value >= 0 && value <= 100),
+
+    gordura_visceral:z
+    .number()
+    .refine((value) => Number.isInteger(value) && value >= 0 && value <= 100),
+
+    metabolismo_basal:z
+    .number()
+    .refine((value) => Number.isInteger(value) && value >= 0 && value <= 5000),
+
+    musculos_esqueleticos:z
+    .number()
+    .refine((value) => Number.isInteger(value) && value >= 0 && value <= 100),
+
+    idade_corporal:z
+    .number()
+    .refine((value) => Number.isInteger(value) && value >= 0 && value <= 100),
+})
+
+export const compcorpSchemaPost = z.object({
+    massa:z
+    .string()
+    .transform((value)=>Number(value))
+    .refine((value) => Number.isInteger(value) && value >= 0 && value <= 250),
+
+    imc:z
+    .string()
+    .transform((value)=>Number(value))
+    .refine((value) => Number.isInteger(value) && value >= 0 && value <= 60),
+
+    gordura_corporal:z
+    .string()
+    .transform((value)=>Number(value))
+    .refine((value) => Number.isInteger(value) && value >= 0 && value <= 100),
+
+    gordura_visceral:z
+    .string()
+    .transform((value)=>Number(value))
+    .refine((value) => Number.isInteger(value) && value >= 0 && value <= 100),
+
+    metabolismo_basal:z
+    .string()
+    .transform((value)=>Number(value))
+    .refine((value) => Number.isInteger(value) && value >= 0 && value <= 5000),
+
+    musculos_esqueleticos:z
+    .string()
+    .transform((value)=>Number(value))
+    .refine((value) => Number.isInteger(value) && value >= 0 && value <= 100),
+
+    idade_corporal:z
+    .string()
+    .transform((value)=>Number(value))
+    .refine((value) => Number.isInteger(value) && value >= 0 && value <= 100),
 })

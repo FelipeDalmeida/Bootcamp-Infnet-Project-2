@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS avantropometrica;
+DROP TABLE IF EXISTS compcorp;
 DROP TABLE IF EXISTS pacientes;
 
 CREATE TABLE pacientes (
@@ -32,6 +33,7 @@ CREATE TABLE avantropometrica (
 CREATE TABLE compcorp (
     id INT AUTO_INCREMENT PRIMARY KEY,
     paciente_id INT NOT NULL,
+    massa INT NOT NULL,
     imc INT NOT NULL,
     gordura_corporal INT NOT NULL,
     gordura_visceral INT NOT NULL,

@@ -4,8 +4,9 @@ dotenv.config();
 import express from 'express';
 import cors from 'cors';
 import { auth } from './routes/auth'
-import { pacientesController } from "./controllers/pacientesController";
-import { antropometricaController } from "./controllers/avAntropometricaController";
+import { pacientesController } from "./controllers/PacientesController";
+import { antropometricaController } from "./controllers/AvAntropometricaController";
+import { compcorpController } from "./controllers/CompCorpController";
 
 
 // Firebase Inicio
@@ -40,7 +41,7 @@ app.use(cors());
 app.use("/auth",auth)
 app.use("/pacientes",pacientesController)
 app.use("/antropometrica",antropometricaController)
-//app.use("/compcorp",compcorp)
+app.use("/compcorp",compcorpController)
 
 
 const port =8080;

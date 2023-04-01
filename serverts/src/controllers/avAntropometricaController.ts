@@ -1,14 +1,14 @@
 import express from "express";
-import * as avAntropometricaRepository from "../repositories/avAntropometricaRepository";
+import * as examsRepository from "../repositories/ExamsRepository";
 export const antropometricaController = express.Router();
-import { avAntropometricaLoadManySchema } from "../schemas/avAntropometricaLoadManySchema";
+import { exameLoadManySchema } from "../schemas/LoadManySchema";
 
 //lista todas as Avaliações Antropométricas de um paciente
 antropometricaController.get('/all/:id', async (req, res) => {
-    const params=await avAntropometricaLoadManySchema.safeParseAsync(req.query);
+    const params=await exameLoadManySchema.safeParseAsync(req.query);
 
     if(params.success){
-        const Pacientes = await avAntropometricaRepository.carregaTodasAvAntropometricas(params.data,Number(req.params.id))
+        const Pacientes = await examsRepository.loadAllExams(params.data,Number(req.params.id),"avantropometrica")
         res.status(200).json(Pacientes)
     } else {
         res.status(400).json({
@@ -21,14 +21,14 @@ antropometricaController.get('/all/:id', async (req, res) => {
 
 //lista a Avaliação Antropométrica de um paciente especifico
 antropometricaController.get('/:id', async (req, res) => {
-    const Paciente = await avAntropometricaRepository.carregaAvAntropometricaID(Number(req.params.id))
+    const Paciente = await examsRepository.loadExamByID(Number(req.params.id),"avantropometrica")
     res.status(200).json(Paciente)
 });
 
 //add uma Avaliação Antropométrica a um paciente com id
 antropometricaController.post('/:id', async (req, res) => {
 
-    const data = await avAntropometricaRepository.adicionaAvAntropometrica(Number(req.params.id),{ ...req.body })
+    const data = await examsRepository.postExam(Number(req.params.id),req.body,"avantropometrica")
 
     if (data.success) {
         res.status(201).json({
@@ -45,11 +45,11 @@ antropometricaController.post('/:id', async (req, res) => {
     }
 });
 
-// Sobrescreve os dados do ultíma Avaliação Antropométrica de um paciente
+// Sobrescreve os dados de uma Avaliação Antropométrica de um paciente
 antropometricaController.put('/:id', async (req, res) => {
-    const success = await avAntropometricaRepository.alteraDadosAvAntropometrica(Number(req.params.id), req.body)
+    const data = await examsRepository.putExams(Number(req.params.id),req.body,"avantropometrica")
 
-    if (success) {
+    if (data.success) {
         res.status(200).json({
             success: true,
             data: {
@@ -66,7 +66,7 @@ antropometricaController.put('/:id', async (req, res) => {
 
 // Deleta os dados de uma Avaliação Antropométrica de um paciente
 antropometricaController.delete("/:id", async (req, res) => {
-    const success = await avAntropometricaRepository.deletaAvAntropometrica(Number(req.params.id))
+    const success = await examsRepository.deleteExam(Number(req.params.id),"avantropometrica")
     if (success) {
         res.status(200).json({
             success: true,
