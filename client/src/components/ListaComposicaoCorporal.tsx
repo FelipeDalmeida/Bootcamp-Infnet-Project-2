@@ -54,22 +54,22 @@ const ListaCompCorp = ({ }) => {
             </div>
 
             <>{listaAvCompCorp?(listaAvCompCorp?.length>0)?listaAvCompCorp.map(({ 
-                Massa,
-                IMC,
-                Gordura_Corporal, 
-                Gordura_Visceral, 
-                Metabolismo_Basal, 
-                Musculos_Esqueleticos, 
-                Idade_Corporal, 
-                Data_Avaliacao }: CompCorp,index:number) => {
+                massa,
+                imc,
+                gordura_corporal, 
+                gordura_visceral, 
+                metabolismo_basal, 
+                musculos_esqueleticos, 
+                idade_corporal, 
+                data_avaliacao }: CompCorp,index:number) => {
            
                 
 
                 return <div className={" border-b  border-b-blue-400  px-10 grid grid-cols-2 sm:grid-cols-5  gap-0 "} key={index}>
-                    <div className={"self-center"}><Text className={"sm:hidden font-bold"} text={text.labelMassa} /><Text text={`${Massa} Kg`} /></div>
-                    <div className={"self-center"}><Text className={"sm:hidden font-bold"} text={text.labelGordura_Corporal} /><Text text={`${Gordura_Corporal} %`} /></div>
-                    <div className={"self-center"}><Text className={"sm:hidden font-bold"} text={text.labelMusculos_Esqueleticos} />{`${Musculos_Esqueleticos} %`}</div>
-                    <div className={"self-center"}><Text className={"sm:hidden font-bold"} text={text.labelData_Avaliacao} />{`${Data_Avaliacao}`}</div>
+                    <div className={"self-center"}><Text className={"sm:hidden font-bold"} text={text.labelMassa} /><Text text={`${massa} Kg`} /></div>
+                    <div className={"self-center"}><Text className={"sm:hidden font-bold"} text={text.labelGordura_Corporal} /><Text text={`${gordura_corporal} %`} /></div>
+                    <div className={"self-center"}><Text className={"sm:hidden font-bold"} text={text.labelMusculos_Esqueleticos} />{`${musculos_esqueleticos} %`}</div>
+                    <div className={"self-center"}><Text className={"sm:hidden font-bold"} text={text.labelData_Avaliacao} />{`${data_avaliacao}`}</div>
                     <Button title={"Exibir"} className={"w-full col-start-0 col-span-2 sm:col-start-5 sm:w-30"} onClick={()=>goToPage(`/compcorp/${id}/${index}`)} />
                 </div>
 

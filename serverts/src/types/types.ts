@@ -11,6 +11,8 @@ export type Pacientes = {
 }
 
 export type CompCorp = {
+    id?:number|string;
+    paciente_id?:number|string;
     massa: number |string;
     imc: number|string;
     gordura_corporal: number|string;
@@ -23,6 +25,8 @@ export type CompCorp = {
 }
 
 export type Antropometrica = {
+    id?:number|string;
+    paciente_id?:number|string;
     estatura?: number|string;
     comprimento_pe?: number|string;
     altura_ombro?: number|string;

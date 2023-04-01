@@ -31,13 +31,13 @@ const CadastraAvCompCorp = ({ }) => {
 
 
     const [form, setForm] = useState({
-        Massa: "",
-        IMC: "",
-        Gordura_Corporal: "",
-        Gordura_Visceral: "",
-        Metabolismo_Basal: "",
-        Musculos_Esqueleticos: "",
-        Idade_Corporal: "",
+        massa: "",
+        imc: "",
+        gordura_corporal: "",
+        gordura_visceral: "",
+        metabolismo_basal: "",
+        musculos_esqueleticos: "",
+        idade_corporal: "",
     })
     const [, cadastroPaciente] = useAxios(
         {
@@ -64,13 +64,13 @@ const CadastraAvCompCorp = ({ }) => {
 
 
     const inputs = [
-        <Input label={text.labelMassa} onChange={(e: any) => setForm({ ...form, Massa: e.target.value })} value={form.Massa} />,
-        <Input label={text.labelIMC} onChange={(e: any) => setForm({ ...form, IMC: e.target.value })} value={form.IMC} />,
-        <Input label={text.labelGordura_Corporal} onChange={(e: any) => setForm({ ...form, Gordura_Corporal: e.target.value })} value={form.Gordura_Corporal} />,
-        <Input label={text.labelGordura_Visceral} onChange={(e: any) => setForm({ ...form, Gordura_Visceral: e.target.value })} value={form.Gordura_Visceral} />,
-        <Input label={text.labelMetabolismo_Basal} onChange={(e: any) => setForm({ ...form, Metabolismo_Basal: e.target.value })} value={form.Metabolismo_Basal} />,
-        <Input label={text.labelMusculos_Esqueleticos} onChange={(e: any) => setForm({ ...form, Musculos_Esqueleticos: e.target.value })} value={form.Musculos_Esqueleticos} />,
-        <Input label={text.labelIdade_Corporal} onChange={(e: any) => setForm({ ...form, Idade_Corporal: e.target.value })} value={form.Idade_Corporal} />,
+        <Input label={text.labelMassa} onChange={(e: any) => setForm({ ...form, massa: e.target.value })} value={form.massa} />,
+        <Input label={text.labelIMC} onChange={(e: any) => setForm({ ...form, imc: e.target.value })} value={form.imc} />,
+        <Input label={text.labelGordura_Corporal} onChange={(e: any) => setForm({ ...form, gordura_corporal: e.target.value })} value={form.gordura_corporal} />,
+        <Input label={text.labelGordura_Visceral} onChange={(e: any) => setForm({ ...form, gordura_visceral: e.target.value })} value={form.gordura_visceral} />,
+        <Input label={text.labelMetabolismo_Basal} onChange={(e: any) => setForm({ ...form, metabolismo_basal: e.target.value })} value={form.metabolismo_basal} />,
+        <Input label={text.labelMusculos_Esqueleticos} onChange={(e: any) => setForm({ ...form, musculos_esqueleticos: e.target.value })} value={form.musculos_esqueleticos} />,
+        <Input label={text.labelIdade_Corporal} onChange={(e: any) => setForm({ ...form, idade_corporal: e.target.value })} value={form.idade_corporal} />,
     ]
 
     return <div className={"h-[calc(100vh-theme(spacing.20))] md:h-auto p-2 grid grid-cols-12 gap-4 "}>

@@ -33,16 +33,16 @@ const AvAntropometrica = () => {
     const goToPage = (page: string) => { navigate(page) }
 
     const forminicial: Antropometrica = {
-        Estatura: "",
-        Comprimento_Pe: "",
-        Altura_Ombro: "",
-        Largura_Ombro: "",
-        Envergadura: "",
-        Altura_Quadril: "",
-        Largura_Quadril: "",
-        Altura_Joelho: "",
-        Altura_Tornozelo: "",
-        Data_Avaliacao: ""
+        estatura: "",
+        comprimento_pe: "",
+        altura_ombro: "",
+        largura_ombro: "",
+        envergadura: "",
+        altura_quadril: "",
+        largura_quadril: "",
+        altura_joelho: "",
+        altura_tornozelo: "",
+        data_avaliacao: ""
     }
 
 
@@ -117,16 +117,16 @@ const AvAntropometrica = () => {
 
 
     const inputs = [
-        <Input label={text.labelEstatura} onChange={(e: any) => setForm({ ...form, Estatura: e.target.value })} value={form.Estatura} disabled={disabled} />,
-        <Input label={text.labelComprimento_Pe} onChange={(e: any) => setForm({ ...form, Comprimento_Pe: e.target.value })} value={form.Comprimento_Pe} disabled={disabled} />,
-        <Input label={text.labelAltura_Ombro} onChange={(e: any) => setForm({ ...form, Altura_Ombro: e.target.value })} value={form.Altura_Ombro} disabled={disabled} />,
-        <Input label={text.labelLargura_Ombro} onChange={(e: any) => setForm({ ...form, Largura_Ombro: e.target.value })} value={form.Largura_Ombro} disabled={disabled} />,
-        <Input label={text.labelEnvergadura} onChange={(e: any) => setForm({ ...form, Envergadura: e.target.value })} value={form.Envergadura} disabled={disabled} />,
-        <Input label={text.labelAltura_Quadril} onChange={(e: any) => setForm({ ...form, Altura_Quadril: e.target.value })} value={form.Altura_Quadril} disabled={disabled} />,
-        <Input label={text.labelLargura_Quadril} onChange={(e: any) => setForm({ ...form, Largura_Quadril: e.target.value })} value={form.Largura_Quadril} disabled={disabled} />,
-        <Input label={text.labelAltura_Joelho} onChange={(e: any) => setForm({ ...form, Altura_Joelho: e.target.value })} value={form.Altura_Joelho} disabled={disabled} />,
-        <Input label={text.labelAltura_Tornozelo} onChange={(e: any) => setForm({ ...form, Altura_Tornozelo: e.target.value })} value={form.Altura_Tornozelo} disabled={disabled} />,
-        <Input label={text.lavelData_Avaliação} onChange={(e: any) => setForm({ ...form, Data_Avaliacao: e.target.value })} value={form.Data_Avaliacao} disabled={disabled} />,
+        <Input label={text.labelEstatura} onChange={(e: any) => setForm({ ...form, estatura: e.target.value })} value={form.estatura} disabled={disabled} />,
+        <Input label={text.labelComprimento_Pe} onChange={(e: any) => setForm({ ...form, comprimento_pe: e.target.value })} value={form.comprimento_pe} disabled={disabled} />,
+        <Input label={text.labelAltura_Ombro} onChange={(e: any) => setForm({ ...form, altura_ombro: e.target.value })} value={form.altura_ombro} disabled={disabled} />,
+        <Input label={text.labelLargura_Ombro} onChange={(e: any) => setForm({ ...form, largura_ombro: e.target.value })} value={form.largura_ombro} disabled={disabled} />,
+        <Input label={text.labelEnvergadura} onChange={(e: any) => setForm({ ...form, envergadura: e.target.value })} value={form.envergadura} disabled={disabled} />,
+        <Input label={text.labelAltura_Quadril} onChange={(e: any) => setForm({ ...form, altura_quadril: e.target.value })} value={form.altura_quadril} disabled={disabled} />,
+        <Input label={text.labelLargura_Quadril} onChange={(e: any) => setForm({ ...form, largura_quadril: e.target.value })} value={form.largura_quadril} disabled={disabled} />,
+        <Input label={text.labelAltura_Joelho} onChange={(e: any) => setForm({ ...form, altura_joelho: e.target.value })} value={form.altura_joelho} disabled={disabled} />,
+        <Input label={text.labelAltura_Tornozelo} onChange={(e: any) => setForm({ ...form, altura_tornozelo: e.target.value })} value={form.altura_tornozelo} disabled={disabled} />,
+        <Input label={text.lavelData_Avaliação} onChange={(e: any) => setForm({ ...form, data_avaliacao: e.target.value })} value={form.data_avaliacao} disabled={disabled} />,
     ]
 
 

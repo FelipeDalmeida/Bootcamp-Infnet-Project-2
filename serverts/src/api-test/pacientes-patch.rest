@@ -1,7 +1,0 @@
-PATCH  http://localhost:8080/pacientes/1
-Content-Type: application/json
-
-{
-    "Nome": "Rafaella",
-    "Idade": 31
- }

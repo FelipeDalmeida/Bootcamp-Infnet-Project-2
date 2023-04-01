@@ -181,20 +181,6 @@ const ListaPacientes = ({ }) => {
 
     }, [])
 
-    // useEffect(()=>{
-    //     console.log(pacientesCount)
-    //     if (pacientesParams.limit >= Number(pacientesCount)) {
-    //         isBtnDisabled({
-    //             btnNext: true,
-    //             btnPrevious: true,
-    //         }) 
-    //     } else if(pacientesParams.limit <= Number(pacientesCount)){
-    //         isBtnDisabled({
-    //             ...btnDisable,
-    //             btnNext: true,
-    //         }) 
-    //     }
-    // },[pacientesParams.limit])
 
     return <div className={"h-full p-2 grid grid-cols-12 gap-4 "}>
 

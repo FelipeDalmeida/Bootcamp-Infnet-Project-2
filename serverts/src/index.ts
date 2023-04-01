@@ -3,11 +3,9 @@ dotenv.config();
 
 import express from 'express';
 import cors from 'cors';
-import {pacientes} from "./routes/pacientes"
-//import { antropometrica } from './routes/avAntropometrica';
-//import { compcorp } from './routes/avComposicaoCorportal';
 import { auth } from './routes/auth'
 import { pacientesController } from "./controllers/pacientesController";
+import { antropometricaController } from "./controllers/avAntropometricaController";
 
 
 // Firebase Inicio
@@ -41,7 +39,7 @@ app.use(express.json());
 app.use(cors());
 app.use("/auth",auth)
 app.use("/pacientes",pacientesController)
-//app.use("/antropometrica",antropometrica)
+app.use("/antropometrica",antropometricaController)
 //app.use("/compcorp",compcorp)
 
 

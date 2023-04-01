@@ -59,14 +59,14 @@ const ListaAvAntropometrica = ({ }) => {
 
             <>{listaAvAntropometrica ? (listaAvAntropometrica?.length > 0) ? listaAvAntropometrica.map(({
 
-                Data_Avaliacao,
+                data_avaliacao,
             }: Antropometrica, index: number) => {
 
 
 
                 return <div className={" border-b  border-b-blue-400  px-10 grid grid-cols-2 sm:grid-cols-5  gap-0 "} key={index}>
 
-                    <div className={"self-center col-start-0 col-span-4 text-center sm:text-left"}><Text className={"sm:hidden font-bold text-center"} text={text.labelData_Avaliacao} />{`${Data_Avaliacao}`}</div>
+                    <div className={"self-center col-start-0 col-span-4 text-center sm:text-left"}><Text className={"sm:hidden font-bold text-center"} text={text.labelData_Avaliacao} />{`${data_avaliacao}`}</div>
 
                     <Button title={"Exibir"} className={"w-full col-start-0 col-span-2 sm:col-start-5 sm:w-30 "} onClick={() => goToPage(`/antropometrica/${id}/${index}`)} />
                 </div>

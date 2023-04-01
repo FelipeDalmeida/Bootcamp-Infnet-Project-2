@@ -36,7 +36,7 @@ const PacientePage = ({ }) => {
     const forminicial: Pacientes = {
 
         nome: "",
-        idade: "",
+        idade: 0,
         sexo: "",
         data_nascimento: "",
         data_cadastro: "",

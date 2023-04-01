@@ -33,15 +33,15 @@ const CadastraAvAntropometrica = ({ }) => {
 
 
     const [form, setForm] = useState({
-        Estatura: "",
-        Comprimento_Pe: "",
-        Altura_Ombro: "",
-        Largura_Ombro: "",
-        Envergadura: "",
-        Altura_Quadril: "",
-        Largura_Quadril: "",
-        Altura_Joelho: "",
-        Altura_Tornozelo: "",
+        estatura: "",
+        comprimento_pe: "",
+        altura_ombro: "",
+        largura_ombro: "",
+        envergadura: "",
+        altura_quadril: "",
+        largura_quadril: "",
+        altura_joelho: "",
+        altura_tornozelo: "",
     })
     const [, cadastroAntropometrica] = useAxios(
         {
@@ -67,15 +67,15 @@ const CadastraAvAntropometrica = ({ }) => {
     }
 
     const inputs = [
-        <Input label={text.labelEstatura} onChange={(e: any) => setForm({ ...form, Estatura: e.target.value })} value={form.Estatura} />,
-        <Input label={text.labelComprimento_Pe} onChange={(e: any) => setForm({ ...form, Comprimento_Pe: e.target.value })} value={form.Comprimento_Pe} />,
-        <Input label={text.labelAltura_Ombro} onChange={(e: any) => setForm({ ...form, Altura_Ombro: e.target.value })} value={form.Altura_Ombro} />,
-        <Input label={text.labelLargura_Ombro} onChange={(e: any) => setForm({ ...form, Largura_Ombro: e.target.value })} value={form.Largura_Ombro} />,
-        <Input label={text.labelEnvergadura} onChange={(e: any) => setForm({ ...form, Envergadura: e.target.value })} value={form.Envergadura} />,
-        <Input label={text.labelAltura_Quadril} onChange={(e: any) => setForm({ ...form, Altura_Quadril: e.target.value })} value={form.Altura_Quadril} />,
-        <Input label={text.labelLargura_Quadril} onChange={(e: any) => setForm({ ...form, Largura_Quadril: e.target.value })} value={form.Largura_Quadril} />,
-        <Input label={text.labelAltura_Joelho} onChange={(e: any) => setForm({ ...form, Altura_Joelho: e.target.value })} value={form.Altura_Joelho} />,
-        <Input label={text.labelAltura_Tornozelo} onChange={(e: any) => setForm({ ...form, Altura_Tornozelo: e.target.value })} value={form.Altura_Tornozelo} />,
+        <Input label={text.labelEstatura} onChange={(e: any) => setForm({ ...form, estatura: e.target.value })} value={form.estatura}/>,
+        <Input label={text.labelComprimento_Pe} onChange={(e: any) => setForm({ ...form, comprimento_pe: e.target.value })} value={form.comprimento_pe}/>,
+        <Input label={text.labelAltura_Ombro} onChange={(e: any) => setForm({ ...form, altura_ombro: e.target.value })} value={form.altura_ombro}/>,
+        <Input label={text.labelLargura_Ombro} onChange={(e: any) => setForm({ ...form, largura_ombro: e.target.value })} value={form.largura_ombro}/>,
+        <Input label={text.labelEnvergadura} onChange={(e: any) => setForm({ ...form, envergadura: e.target.value })} value={form.envergadura}/>,
+        <Input label={text.labelAltura_Quadril} onChange={(e: any) => setForm({ ...form, altura_quadril: e.target.value })} value={form.altura_quadril}/>,
+        <Input label={text.labelLargura_Quadril} onChange={(e: any) => setForm({ ...form, largura_quadril: e.target.value })} value={form.largura_quadril}/>,
+        <Input label={text.labelAltura_Joelho} onChange={(e: any) => setForm({ ...form, altura_joelho: e.target.value })} value={form.altura_joelho}/>,
+        <Input label={text.labelAltura_Tornozelo} onChange={(e: any) => setForm({ ...form, altura_tornozelo: e.target.value })} value={form.altura_tornozelo}/>,
     ]
 
     return <div className={"h-[calc(100vh-theme(spacing.20))] md:h-auto p-2 grid grid-cols-12 gap-4 "}>

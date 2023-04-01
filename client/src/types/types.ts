@@ -11,39 +11,30 @@ export type Pacientes = {
 }
 
 export type CompCorp = {
-    Massa: string | number;
-    IMC: string | number;
-    Gordura_Corporal: string | number;
-    Gordura_Visceral: string | number;
-    Metabolismo_Basal: string | number;
-    Musculos_Esqueleticos: string | number;
-    Idade_Corporal: string | number;
-    Data_Avaliacao?:string;
+    id?:number|string;
+    paciente_id?:number|string;
+    massa: number |string;
+    imc: number|string;
+    gordura_corporal: number|string;
+    gordura_visceral: number|string;
+    metabolismo_basal: number|string;
+    musculos_esqueleticos: number|string;
+    idade_corporal: number|string;
+    data_avaliacao?:string;
 
 }
 
-// export type Hemograma = {
-//     Hemacias?: string | number;
-//     Hemoglobina?: string | number;
-//     Hematocritos?: string | number;
-//     Leucocitos?: string | number;
-//     VGM?: string | number;
-//     HGM?: string | number;
-//     CHGM?: string | number;
-//     RDW?: string | number;
-//     Plaquetas?: string | number;
-//     Data_Avaliacao?:string|Date;
-// }
-
 export type Antropometrica = {
-    Estatura?: string | number;
-    Comprimento_Pe?: string | number;
-    Altura_Ombro?: string | number;
-    Largura_Ombro?: string | number;
-    Envergadura?: string | number;
-    Altura_Quadril?: string | number;
-    Largura_Quadril?: string | number;
-    Altura_Joelho?: string | number;
-    Altura_Tornozelo?: string | number;
-    Data_Avaliacao?:string;
+    id?:number|string;
+    paciente_id?:number|string;
+    estatura?: number|string;
+    comprimento_pe?: number|string;
+    altura_ombro?: number|string;
+    largura_ombro?: number|string;
+    envergadura?: number|string;
+    altura_quadril?: number|string;
+    largura_quadril?: number|string;
+    altura_joelho?: number|string;
+    altura_tornozelo?: number|string;
+    data_avaliacao?:string;
 }
