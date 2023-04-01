@@ -23,7 +23,7 @@ export const carregaPacientes = async ({
     const [pacientes] = (await connection.query(`select * from pacientes 
     ${search? `where nome like '%${search}%' or cpf like '%${search}%'`:""}
     order by ${orderby} ${direction}  limit ${limit} offset ${offset}`)) as any
-    const [[{count}]]=(await connection.query("select count(*) as count from pacientes")) as any;
+    const [[{count}]]=(await connection.query(`select count(*) as count from pacientes ${search? `where nome like '%${search}%' or cpf like '%${search}%'`:""}`)) as any;
     connection.release()
     return {count,pacientes}
 

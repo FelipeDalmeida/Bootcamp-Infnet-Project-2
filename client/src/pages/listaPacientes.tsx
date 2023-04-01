@@ -73,6 +73,26 @@ const ListaPacientes = ({ }) => {
 
 
     const buscaPaciente = async () => {
+        setPacientesParams({...pacientesParams,offset:0})
+        await getPacientes({
+            params: {...pacientesParams,offset:0}
+        })
+
+        if ((Number(pacientesParams.limit)) >= Number(pacientesCount)) {
+            isBtnDisabled({
+                btnNext: true,
+                btnPrevious: true,
+            })
+        } else if (Number(pacientesParams.limit) < Number(pacientesCount)) {
+            isBtnDisabled({
+                btnPrevious: true,
+                btnNext: false,
+            })
+        }
+        console.log(pacientesCount)
+    }
+
+    const setParams = async()=>{
         await getPacientes({
             params: pacientesParams,
         })
@@ -81,13 +101,14 @@ const ListaPacientes = ({ }) => {
                 btnNext: true,
                 btnPrevious: true,
             })
-        } else if (pacientesParams.limit <= Number(pacientesCount)) {
+        } else if (pacientesParams.limit < Number(pacientesCount)) {
             isBtnDisabled({
                 ...btnDisable,
                 btnNext: false,
             })
         }
     }
+    
 
     useEffect(() => {
         getPacientes({
@@ -163,7 +184,7 @@ const ListaPacientes = ({ }) => {
                         />
                     </div>}
                 lowerContent={
-                    <Button title={text.changeConfig} onClick={() => { buscaPaciente(); setOpenModal(false) }} />
+                    <Button title={text.changeConfig} onClick={() => { setParams(); setOpenModal(false) }} />
                 }
             />
             <Search label={text.search}

@@ -64,7 +64,7 @@ const ListaAvAntropometrica = ({ }) => {
     });
 
 
-    const buscaExame = async () => {
+    const setParams = async () => {
         await getAvCompCorp({
             params: examesParams,
         })
@@ -142,7 +142,7 @@ const ListaAvAntropometrica = ({ }) => {
                         />
                     </div>}
                 lowerContent={
-                    <Button title={text.changeConfig} onClick={() => { buscaExame(); setOpenModal(false) }} />
+                    <Button title={text.changeConfig} onClick={() => { setParams(); setOpenModal(false) }} />
                 }
             />
 
