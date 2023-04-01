@@ -4,7 +4,7 @@ export const antropometricaController = express.Router();
 import { avAntropometricaLoadManySchema } from "../schemas/avAntropometricaLoadManySchema";
 
 //lista todas as Avaliações Antropométricas de um paciente
-antropometricaController.get('/:id', async (req, res) => {
+antropometricaController.get('/all/:id', async (req, res) => {
     const params=await avAntropometricaLoadManySchema.safeParseAsync(req.query);
 
     if(params.success){
@@ -20,8 +20,8 @@ antropometricaController.get('/:id', async (req, res) => {
 });
 
 //lista a Avaliação Antropométrica de um paciente especifico
-antropometricaController.get('/:id/:index', async (req, res) => {
-    const Paciente = await avAntropometricaRepository.carregaAvAntropometricaID(Number(req.params.id),Number(req.params.index))
+antropometricaController.get('/:id', async (req, res) => {
+    const Paciente = await avAntropometricaRepository.carregaAvAntropometricaID(Number(req.params.id))
     res.status(200).json(Paciente)
 });
 

@@ -1,2 +1,2 @@
-GET http://localhost:8080/antropometrica/1/2
+GET http://localhost:8080/antropometrica/3
 Content-Type: application/json

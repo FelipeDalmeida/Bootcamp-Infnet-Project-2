@@ -43,9 +43,9 @@ if(!isAuth){
           <Route path="/pacientes" element={<ListaPacientes/>}/>
           <Route path="/pacientes/:id" element={<PacientePage/>}/>
           <Route path="/cadastrocompcorp/:id" element={<CadastraAvCompCorp/>}/>
-          <Route path="/compcorp/:id/:index" element={<AvCompCorp/>}/>
+          <Route path="/compcorp/:id" element={<AvCompCorp/>}/>
           <Route path="/cadastroantropometrica/:id" element={<CadastraAvAntropometrica/>}/>
-          <Route path="/antropometrica/:id/:index" element={<AvAntropometrica/>}/>
+          <Route path="/antropometrica/:id" element={<AvAntropometrica/>}/>
         
         </Routes>
         </Suspense>

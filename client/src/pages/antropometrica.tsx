@@ -21,14 +21,13 @@ const text = {
     labelAltura_Tornozelo: "Altura do Tornozelo",
     lavelData_Avaliação: "Data da Avaliação",
     labelButtonAtualizar: "Atualizar",
-    labelTitle: "Composição Corporal"
+    labelTitle: "Avaliação Antropométrica"
 }
 
 
 const AvAntropometrica = () => {
     const params = useParams()
     const id = params.id;
-    const index = params.index;
     const navigate = useNavigate();
     const goToPage = (page: string) => { navigate(page) }
 
@@ -51,7 +50,7 @@ const AvAntropometrica = () => {
 
     const [{ data: infoAntropometrica }, getAntropometrica] = useAxios<Antropometrica>(
         {
-            url: `/antropometrica/${id}/${index}`,
+            url: `/antropometrica/${id}`,
             method: "get",
         },
         {
@@ -61,8 +60,8 @@ const AvAntropometrica = () => {
 
     const [, editAntropometrica] = useAxios<Antropometrica>(
         {
-            url: `/antropometrica/${id}/${index}`,
-            method: "patch",
+            url: `/antropometrica/${id}`,
+            method: "put",
             data: {
                 ...form,
             }
@@ -74,11 +73,8 @@ const AvAntropometrica = () => {
 
     const [, deleteAntropometrica] = useAxios<Antropometrica>(
         {
-            url: `/antropometrica/${id}/${index}`,
+            url: `/antropometrica/${id}`,
             method: "delete",
-            data: {
-                index: index
-            }
         },
         {
             manual: true,
@@ -99,13 +95,12 @@ const AvAntropometrica = () => {
     const deletaForm = async () => {
         deleteAntropometrica()
         await delay(0.5)
-        goToPage(`/pacientes/${id}`)
+        goToPage(`/pacientes/${infoAntropometrica?.paciente_id}`)
     }
 
     useEffect(() => {
         getAntropometrica()
         console.log("Atualizado")
-        console.log(`Index: ${index}`)
     }, [])
 
     useEffect(() => {
@@ -117,15 +112,15 @@ const AvAntropometrica = () => {
 
 
     const inputs = [
-        <Input label={text.labelEstatura} onChange={(e: any) => setForm({ ...form, estatura: e.target.value })} value={form.estatura} disabled={disabled} />,
-        <Input label={text.labelComprimento_Pe} onChange={(e: any) => setForm({ ...form, comprimento_pe: e.target.value })} value={form.comprimento_pe} disabled={disabled} />,
-        <Input label={text.labelAltura_Ombro} onChange={(e: any) => setForm({ ...form, altura_ombro: e.target.value })} value={form.altura_ombro} disabled={disabled} />,
-        <Input label={text.labelLargura_Ombro} onChange={(e: any) => setForm({ ...form, largura_ombro: e.target.value })} value={form.largura_ombro} disabled={disabled} />,
-        <Input label={text.labelEnvergadura} onChange={(e: any) => setForm({ ...form, envergadura: e.target.value })} value={form.envergadura} disabled={disabled} />,
-        <Input label={text.labelAltura_Quadril} onChange={(e: any) => setForm({ ...form, altura_quadril: e.target.value })} value={form.altura_quadril} disabled={disabled} />,
-        <Input label={text.labelLargura_Quadril} onChange={(e: any) => setForm({ ...form, largura_quadril: e.target.value })} value={form.largura_quadril} disabled={disabled} />,
-        <Input label={text.labelAltura_Joelho} onChange={(e: any) => setForm({ ...form, altura_joelho: e.target.value })} value={form.altura_joelho} disabled={disabled} />,
-        <Input label={text.labelAltura_Tornozelo} onChange={(e: any) => setForm({ ...form, altura_tornozelo: e.target.value })} value={form.altura_tornozelo} disabled={disabled} />,
+        <Input label={text.labelEstatura} onChange={(e: any) => setForm({ ...form, estatura: Number(e.target.value) })} value={form.estatura} disabled={disabled} />,
+        <Input label={text.labelComprimento_Pe} onChange={(e: any) => setForm({ ...form, comprimento_pe: Number(e.target.value) })} value={form.comprimento_pe} disabled={disabled} />,
+        <Input label={text.labelAltura_Ombro} onChange={(e: any) => setForm({ ...form, altura_ombro: Number(e.target.value) })} value={form.altura_ombro} disabled={disabled} />,
+        <Input label={text.labelLargura_Ombro} onChange={(e: any) => setForm({ ...form, largura_ombro: Number(e.target.value) })} value={form.largura_ombro} disabled={disabled} />,
+        <Input label={text.labelEnvergadura} onChange={(e: any) => setForm({ ...form, envergadura: Number(e.target.value) })} value={form.envergadura} disabled={disabled} />,
+        <Input label={text.labelAltura_Quadril} onChange={(e: any) => setForm({ ...form, altura_quadril: Number(e.target.value) })} value={form.altura_quadril} disabled={disabled} />,
+        <Input label={text.labelLargura_Quadril} onChange={(e: any) => setForm({ ...form, largura_quadril: Number(e.target.value) })} value={form.largura_quadril} disabled={disabled} />,
+        <Input label={text.labelAltura_Joelho} onChange={(e: any) => setForm({ ...form, altura_joelho: Number(e.target.value) })} value={form.altura_joelho} disabled={disabled} />,
+        <Input label={text.labelAltura_Tornozelo} onChange={(e: any) => setForm({ ...form, altura_tornozelo: Number(e.target.value) })} value={form.altura_tornozelo} disabled={disabled} />,
         <Input label={text.lavelData_Avaliação} onChange={(e: any) => setForm({ ...form, data_avaliacao: e.target.value })} value={form.data_avaliacao} disabled={disabled} />,
     ]
 

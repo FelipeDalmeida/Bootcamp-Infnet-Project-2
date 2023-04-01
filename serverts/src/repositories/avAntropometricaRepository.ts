@@ -1,6 +1,6 @@
 import { databasePool } from "../database/databasePoll";
 import type { Antropometrica } from "../types/types";
-import { avAntropometricaSchema } from "../schemas/avAntropometricaSchema";
+import { avAntropometricaSchema, avAntropometricaSchemaPost } from "../schemas/avAntropometricaSchema";
 
 
 export const carregaTodasAvAntropometricas = async ({
@@ -28,9 +28,9 @@ id:number): Promise<{
 
 }
 
-export const carregaAvAntropometricaID = async (id: Number,index:number): Promise<Antropometrica> => {  //id do paciente, então paciente_id e index id do exame no BD
+export const carregaAvAntropometricaID = async (id: Number): Promise<Antropometrica> => { 
     const connection = await databasePool.getConnection()
-    const [exame] = (await connection.query("select * from avantropometrica where id=? and paciente_id=?",[index, id])) as any
+    const [exame] = (await connection.query("select * from avantropometrica where id=?",id)) as any
     connection.release()
     
     return exame[0]
@@ -38,7 +38,7 @@ export const carregaAvAntropometricaID = async (id: Number,index:number): Promis
 
 export const adicionaAvAntropometrica = async (id: number, data: Antropometrica) => {
 
-    const validExame = await avAntropometricaSchema.safeParseAsync(data);
+    const validExame = await avAntropometricaSchemaPost.safeParseAsync(data);
     if (!validExame.success) {
         console.log(validExame.error)
         return {

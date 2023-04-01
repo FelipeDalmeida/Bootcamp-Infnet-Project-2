@@ -2,7 +2,7 @@ POST  http://localhost:8080/pacientes/
 Content-Type: application/json
 
 {
-    "nome":"Aafita",
+    "nome":"Rafita",
     "idade":"29",
     "sexo":"Feminino",
     "celular":"(21)97878765",

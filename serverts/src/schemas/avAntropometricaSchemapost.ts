@@ -7,46 +7,6 @@ export const avAntropometricaSchema = z.object({
     // .transform((value) => Number(value)),
 
     estatura:z
-    .number()
-    .refine((value) => Number.isInteger(value) && value >= 0 && value <= 250),
-
-    comprimento_pe:z
-    .number()
-    .refine((value) => Number.isInteger(value) && value >= 0 && value <= 50),
-
-    altura_ombro:z
-    .number()
-    .refine((value) => Number.isInteger(value) && value >= 0 && value <= 200),
-
-    largura_ombro:z
-    .number()
-    .refine((value) => Number.isInteger(value) && value >= 0 && value <= 200),
-
-    envergadura:z
-    .number()
-    .refine((value) => Number.isInteger(value) && value >= 0 && value <= 300),
-
-    altura_quadril:z
-    .number()
-    .refine((value) => Number.isInteger(value) && value >= 0 && value <= 200),
-
-    largura_quadril:z
-    .number()
-    .refine((value) => Number.isInteger(value) && value >= 0 && value <= 200),
-
-    altura_joelho:z
-    .number()
-    .refine((value) => Number.isInteger(value) && value >= 0 && value <= 200),
-
-    altura_tornozelo:z
-    .number()
-    .refine((value) => Number.isInteger(value) && value >= 0 && value <= 200),
-    
-})
-
-export const avAntropometricaSchemaPost = z.object({
-
-    estatura:z
     .string()
     .transform((value)=>Number(value))
     .refine((value) => Number.isInteger(value) && value >= 0 && value <= 250),

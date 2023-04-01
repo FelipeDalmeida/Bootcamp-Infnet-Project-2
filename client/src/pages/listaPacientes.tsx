@@ -9,9 +9,10 @@ import Input from '../components/Input';
 import Search from '../components/Search';
 import Tools from '../components/Tools';
 import Select from '../components/Select';
+import ArrowSearch from '../components/ArrowSearch';
 
 
-//TODO:Implementar busca e alterar limite
+
 
 const text = {
     id: "Matrícula",
@@ -27,7 +28,8 @@ const text = {
     tools: "Configurações de pesquisa",
     orderby: "Ordenar por",
     limit: "Quantidade",
-    changeConfig: "OK",
+    changeConfig: "Salvar",
+    direction: "Direção"
 }
 
 const ListaPacientes = ({ }) => {
@@ -43,6 +45,7 @@ const ListaPacientes = ({ }) => {
         limit: 5,
         search: "",
         orderby: "id",
+        direction: "asc"
     })
 
     const [btnDisable, isBtnDisabled] = useState({
@@ -67,80 +70,6 @@ const ListaPacientes = ({ }) => {
             });
 
 
-    const nextPacientes = async () => {
-        let params = { ...pacientesParams }
-        const nextOffset = pacientesParams.offset + pacientesParams.limit;
-
-        if (nextOffset < pacientesCount) {
-            params = {
-                ...pacientesParams,
-                offset: nextOffset,
-            }
-            isBtnDisabled({
-                btnNext: false,
-                btnPrevious: false,
-            })
-        } else {
-            isBtnDisabled({
-                btnNext: true,
-                btnPrevious: false,
-            })
-        }
-
-        setPacientesParams(params)
-        console.log(params)
-        await getPacientes({
-            params: params,
-        })
-
-        if (nextOffset + params.limit >= pacientesCount) {
-            isBtnDisabled({
-                btnNext: true,
-                btnPrevious: false,
-            })
-        }
-    }
-
-    const previousPacientes = async () => {
-        let params = {
-            ...pacientesParams,
-        }
-        const nextOffset = pacientesParams.offset - pacientesParams.limit;
-
-
-
-        if (nextOffset >= 0) {
-            params = {
-                ...pacientesParams,
-                offset: nextOffset,
-            }
-            isBtnDisabled({
-                btnNext: false,
-                btnPrevious: false,
-            })
-
-        } else {
-            isBtnDisabled({
-                btnNext: false,
-                btnPrevious: true,
-            })
-        }
-
-
-        setPacientesParams(params)
-
-        await getPacientes({
-            params: params,
-        })
-
-        if (nextOffset <= 0) {
-            isBtnDisabled({
-                btnNext: false,
-                btnPrevious: true,
-            })
-        }
-
-    }
 
 
     const buscaPaciente = async () => {
@@ -169,7 +98,7 @@ const ListaPacientes = ({ }) => {
                     btnNext: true,
                     btnPrevious: true,
                 })
-            } else if (pacientesParams.limit <= Number(pacientesCount)) {
+            } else if (pacientesParams.limit <= Number(res.data.count)) {
                 isBtnDisabled({
                     ...btnDisable,
                     btnNext: false,
@@ -207,7 +136,7 @@ const ListaPacientes = ({ }) => {
                         />
                         <Select
                             value={pacientesParams.limit}
-                            onChange={(e) => { setPacientesParams({ ...pacientesParams, limit: e.target.value }) }}
+                            onChange={(e) => { setPacientesParams({ ...pacientesParams, limit: Number(e.target.value) }) }}
                             className={"col-span-12 md:col-span-6"}
                             label={text.limit}
                             options={
@@ -217,6 +146,18 @@ const ListaPacientes = ({ }) => {
                                     <option value={15}>15</option>,
                                     <option value={20}>20</option>,
                                     <option value={25}>25</option>
+                                ]
+                            }
+                        />
+                        <Select
+                            value={pacientesParams.direction}
+                            onChange={(e) => { setPacientesParams({ ...pacientesParams, direction: e.target.value }) }}
+                            className={"col-span-12 md:col-span-6"}
+                            label={text.direction}
+                            options={
+                                [
+                                    <option value={"asc"}>Ascendente</option>,
+                                    <option value={"desc"}>Descendente</option>
                                 ]
                             }
                         />
@@ -259,10 +200,15 @@ const ListaPacientes = ({ }) => {
                 <Text className={"text-rose-700 text-center my-10 text-3xl"} type={"h2"} text={text.semPacientes} />}</>
 
             {(listaPacientes?.length > 0) ?
-                <div className={"text-center mt-5"} >
-                    <Button title={""} iconBack={<FaAngleDoubleLeft className={"text-2xl"} />} onClick={async () => previousPacientes()} disabled={btnDisable.btnPrevious} className={btnDisable.btnPrevious ? "bg-gray-500 border-gray-500 hover:bg-gray-500 hover:border-gray-500 " : ""} />
-                    <Button title={""} iconFront={<FaAngleDoubleRight className={"text-2xl"} />} onClick={async () => nextPacientes()} disabled={btnDisable.btnNext} className={btnDisable.btnNext ? "bg-gray-500 border-gray-500 hover:bg-gray-500 hover:border-gray-500 " : ""} />
-                </div>
+                <ArrowSearch
+                    btnDisableNext={btnDisable.btnNext}
+                    btnDisablePrev={btnDisable.btnPrevious}
+                    isBtnDisabled={isBtnDisabled}
+                    Params={pacientesParams}
+                    setParams={setPacientesParams}
+                    count={pacientesCount}
+                    get={getPacientes}
+                />
                 : ""}
 
 
