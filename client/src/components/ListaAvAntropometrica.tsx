@@ -58,14 +58,14 @@ const ListaAvAntropometrica = ({ }) => {
             count: 0,
             exames: []
         }
-    }, getAvCompCorp] = useAxios<{count: number,exames:Antropometrica[]}>({
+    }, getAvAntropometrica] = useAxios<{count: number,exames:Antropometrica[]}>({
         url: `/antropometrica/all/${id}`,
         method: "get",
     });
 
 
     const setParams = async () => {
-        await getAvCompCorp({
+        await getAvAntropometrica({
             params: examesParams,
         })
         if (examesParams.limit >= Number(examesCount)) {
@@ -83,7 +83,7 @@ const ListaAvAntropometrica = ({ }) => {
     
 
     useEffect(() => {
-        getAvCompCorp({
+        getAvAntropometrica({
             params: examesParams,
         }).then((res) => {
             if (examesParams.limit >= Number(res.data.count)) {
@@ -135,8 +135,8 @@ const ListaAvAntropometrica = ({ }) => {
                             label={text.direction}
                             options={
                                 [
-                                    <option value={"asc"}>Ascendente</option>,
-                                    <option value={"desc"}>Descendente</option>
+                                    <option value={"asc"}>Mais Antigos</option>,
+                                    <option value={"desc"}>Mais Novos</option>
                                 ]
                             }
                         />
@@ -178,7 +178,7 @@ const ListaAvAntropometrica = ({ }) => {
                 Params={examesParams}
                 setParams={setExamesParams}
                 count={examesCount}
-                get={getAvCompCorp}
+                get={getAvAntropometrica}
                  />
                 : ""}
 

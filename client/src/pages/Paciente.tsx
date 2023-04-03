@@ -12,6 +12,7 @@ import { delay } from "../service/delay"
 import ListaCompCorp from "../components/ListaComposicaoCorporal"
 import ListaAvAntropometrica from "../components/ListaAvAntropometrica"
 import Select from "../components/Select"
+import { useZorm } from "react-zorm";
 
 const text = {
     labelNome: "Nome",

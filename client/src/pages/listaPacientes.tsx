@@ -177,8 +177,8 @@ const ListaPacientes = ({ }) => {
                             label={text.direction}
                             options={
                                 [
-                                    <option value={"asc"}>Ascendente</option>,
-                                    <option value={"desc"}>Descendente</option>
+                                    <option value={"asc"}>Mais Antigos</option>,
+                                    <option value={"desc"}>Mais Novos</option>
                                 ]
                             }
                         />

@@ -45,7 +45,7 @@ const AvCompCorp = () => {
 
     const [{ data: infoCompCorp }, getCompCorp] = useAxios<CompCorp>(
         {
-            url: `/compcorp/${id}/${index}`,
+            url: `/compcorp/${id}/`,
             method: "get",
         },
         {
@@ -55,8 +55,8 @@ const AvCompCorp = () => {
 
     const [, editCompCorp] = useAxios<CompCorp>(
         {
-            url: `/compcorp/${id}/${index}`,
-            method: "patch",
+            url: `/compcorp/${id}`,
+            method: "put",
             data: {
                 ...form,
             }
@@ -68,7 +68,7 @@ const AvCompCorp = () => {
 
     const [, deleteCompCorp] = useAxios<CompCorp>(
         {
-            url: `/compcorp/${id}/${index}`,
+            url: `/compcorp/${id}`,
             method: "delete",
             data: {
                 index: index
@@ -93,13 +93,12 @@ const AvCompCorp = () => {
     const deletaForm = async () => {
         deleteCompCorp()
         await delay(0.5)
-        goToPage(`/pacientes/${id}`)
+        goToPage(`/pacientes/${infoCompCorp?.paciente_id}`)
     }
 
     useEffect(() => {
         getCompCorp()
         console.log("Atualizado")
-        console.log(`Index: ${index}`)
     }, [])
 
     useEffect(() => {
@@ -110,13 +109,13 @@ const AvCompCorp = () => {
 
 
     const inputs = [
-        <Input label={text.labelMassa} onChange={(e: any) => setForm({ ...form, massa: e.target.value })} value={form.massa} disabled={disabled} />,
-        <Input label={text.labelIMC} onChange={(e: any) => setForm({ ...form, imc: e.target.value })} value={form.imc} disabled={disabled} />,
-        <Input label={text.labelGordura_Corporal} onChange={(e: any) => setForm({ ...form, gordura_corporal: e.target.value })} value={form.gordura_corporal} disabled={disabled} />,
-        <Input label={text.labelGordura_Visceral} onChange={(e: any) => setForm({ ...form, gordura_visceral: e.target.value })} value={form.gordura_visceral} disabled={disabled} />,
-        <Input label={text.labelMetabolismo_Basal} onChange={(e: any) => setForm({ ...form, metabolismo_basal: e.target.value })} value={form.metabolismo_basal} disabled={disabled} />,
-        <Input label={text.labelMusculos_Esqueleticos} onChange={(e: any) => setForm({ ...form, musculos_esqueleticos: e.target.value })} value={form.musculos_esqueleticos} disabled={disabled} />,
-        <Input label={text.labelIdade_Corporal} onChange={(e: any) => setForm({ ...form, idade_corporal: e.target.value })} value={form.idade_corporal} disabled={disabled} />,
+        <Input label={text.labelMassa} onChange={(e: any) => setForm({ ...form, massa: Number(e.target.value) })} value={form.massa} disabled={disabled} />,
+        <Input label={text.labelIMC} onChange={(e: any) => setForm({ ...form, imc: Number(e.target.value) })} value={form.imc} disabled={disabled} />,
+        <Input label={text.labelGordura_Corporal} onChange={(e: any) => setForm({ ...form, gordura_corporal: Number(e.target.value) })} value={form.gordura_corporal} disabled={disabled} />,
+        <Input label={text.labelGordura_Visceral} onChange={(e: any) => setForm({ ...form, gordura_visceral: Number(e.target.value) })} value={form.gordura_visceral} disabled={disabled} />,
+        <Input label={text.labelMetabolismo_Basal} onChange={(e: any) => setForm({ ...form, metabolismo_basal: Number(e.target.value) })} value={form.metabolismo_basal} disabled={disabled} />,
+        <Input label={text.labelMusculos_Esqueleticos} onChange={(e: any) => setForm({ ...form, musculos_esqueleticos: Number(e.target.value) })} value={form.musculos_esqueleticos} disabled={disabled} />,
+        <Input label={text.labelIdade_Corporal} onChange={(e: any) => setForm({ ...form, idade_corporal: Number(e.target.value) })} value={form.idade_corporal} disabled={disabled} />,
         <Input label={text.lavelData_Avaliação} onChange={(e: any) => setForm({ ...form, data_avaliacao: e.target.value })} value={form.data_avaliacao} disabled={disabled} />,
     ]
 

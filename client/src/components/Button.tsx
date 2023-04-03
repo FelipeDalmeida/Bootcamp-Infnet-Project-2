@@ -19,13 +19,4 @@ const Button = ({ title, type, onClick, className, fullwidth, iconBack, iconFron
 }
 
 
-Button.defaultProps = {
-  type: "button",
-  title: "Button",
-  onClick: null,
-  className: "",
-  fullwidth: false,
-  disabled: false,
-}
-
 export default Button

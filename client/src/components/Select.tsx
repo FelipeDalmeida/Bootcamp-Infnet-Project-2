@@ -8,9 +8,10 @@ interface SelectProps {
   className?: string;
   disabled?: boolean;
   options: any;
+  error?:string;
 }
 
-const Select = ({ label, name, id, options, onChange, value, className, disabled }: SelectProps) => {
+const Select = ({ label, name, id, options, onChange, value, className, disabled,error }: SelectProps) => {
 
 
 
@@ -19,7 +20,8 @@ const Select = ({ label, name, id, options, onChange, value, className, disabled
 
 
 
-  return <div className={`${className} m-2 relative`}>
+  return <div>
+    <div className={`${className} m-2 relative`}>
     <span className={value ? 'bottom-8 left-1 pl-3 absolute' : "pl-3 bottom-2.5 absolute"}><label className="relative z-10 font-semibold bg-white border-0 rounded-2xl px-2" >
       {label}
     </label>
@@ -36,6 +38,8 @@ const Select = ({ label, name, id, options, onChange, value, className, disabled
         return option
       })}
     </select>
+  </div>
+  <p className="pl-4 text-rose-600 text-xs">{error ? error : ""}</p>
   </div>
 }
 
