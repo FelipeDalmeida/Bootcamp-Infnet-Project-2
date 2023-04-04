@@ -10,6 +10,7 @@ import { delay } from "../service/delay"
 import Select from "../components/Select"
 import { pacienteSchema } from "../schemas/pacienteSchema"
 import { ZodError } from "zod"
+import { setFormErrorsValid } from "../service/formValidation"
 
 
 //TODO: calcular idade automáticamente.
@@ -41,7 +42,6 @@ const CadastraPaciente = ({ }) => {
         celular: ""
     })
 
-    const [id, setID] = useState("")
     const [form, setForm] = useState({
         nome: "",
         idade: "",
@@ -55,7 +55,6 @@ const CadastraPaciente = ({ }) => {
         {
             url: '/pacientes',
             method: 'post',
-            //data: form,
 
         },
 
@@ -64,27 +63,17 @@ const CadastraPaciente = ({ }) => {
         }
     )
 
-    const submitForm = async (e:any) => {
+    const submitForm = async (e: any) => {
 
         e.preventDefault();
 
-        setErrors({
-            nome: "",
-            idade: "",
-            sexo: "",
-            data_nascimento: "",
-            cpf: "",
-            email: "",
-            celular: ""
-        })
-
         const validForm = await pacienteSchema.safeParseAsync(form);
 
-        
+
 
         if (!validForm.success) {
 
-            setErrors({
+            const erros: any = {
                 nome: "",
                 idade: "",
                 sexo: "",
@@ -92,24 +81,9 @@ const CadastraPaciente = ({ }) => {
                 cpf: "",
                 email: "",
                 celular: ""
-            })
+            }
 
-
-            const errors_form=validForm.error.errors
-            const keys=Object.keys(errors)
-            const erros:any={}
-
-            errors_form.map(error=>{
-                keys.map(key=>{
-                    if(error.path[0]==key){
-                        erros[key]=error.message
-                        
-                        setErrors({...errors,...erros})
-                       
-                    }
-                })
-            })
-
+            setFormErrorsValid(validForm, errors, setErrors, erros)
             console.log(errors)
             return false
         }
@@ -138,19 +112,18 @@ const CadastraPaciente = ({ }) => {
 
     const inputs = [
 
-        <Input label={text.labelNome} onChange={(e: any) => setForm({ ...form, nome: e.target.value })} value={form.nome} error={errors.nome}/>,
-        // // error={pacienteForm.errors.nome((e) => { return e.message })} />,
-        <Input label={text.labelIdade} onChange={(e: any) => setForm({ ...form, idade: e.target.value })} value={form.idade} error={errors.idade}/>,
+        <Input label={text.labelNome} onChange={(e: any) => setForm({ ...form, nome: e.target.value })} value={form.nome} error={errors.nome} />,
+        <Input label={text.labelIdade} onChange={(e: any) => setForm({ ...form, idade: e.target.value })} value={form.idade} error={errors.idade} />,
         <Select label={"Sexo"} value={form.sexo} onChange={(e: any) => setForm({ ...form, sexo: e.target.value })} error={errors.sexo}
             options={[
                 <option value={"Masculino"}>Masculino</option>,
                 <option value={"Feminino"}>Feminino</option>,
                 <option value={""}></option>,]
             } />,
-        <Input label={text.labelCpf} onChange={(e: any) => setForm({ ...form, cpf: e.target.value })} value={form.cpf} error={errors.cpf}/>,
+        <Input label={text.labelCpf} onChange={(e: any) => setForm({ ...form, cpf: e.target.value })} value={form.cpf} error={errors.cpf} />,
         <Input label={text.labelCelular} onChange={(e: any) => setForm({ ...form, celular: e.target.value })} value={form.celular} error={errors.celular} />,
-        <Input label={text.labelEmail} onChange={(e: any) => setForm({ ...form, email: e.target.value })} value={form.email} error={errors.email}/>,
-        <Input type={"date"} label={text.labelData_Nascimento} onChange={(e: any) => setForm({ ...form, data_nascimento: e.target.value })} value={form.data_nascimento} error={errors.data_nascimento}/>,
+        <Input label={text.labelEmail} onChange={(e: any) => setForm({ ...form, email: e.target.value })} value={form.email} error={errors.email} />,
+        <Input type={"date"} label={text.labelData_Nascimento} onChange={(e: any) => setForm({ ...form, data_nascimento: e.target.value })} value={form.data_nascimento} error={errors.data_nascimento} />,
     ]
 
 
@@ -160,7 +133,7 @@ const CadastraPaciente = ({ }) => {
             <Text className={"text-center mt-6 text-4xl"} type={"h1"} text={"Cadastro"} />
             <CriaForm inputs={inputs} className={"grid-cols-1 md:grid-cols-2 lg:grid-cols-3"} />
             <div className={"mx-10 "}>
-                <Button type={"button"} title={"Cadastar Paciente"} onClick={(e)=>submitForm(e)} className={"m-0 p-2 w-full md:absolute md:right-12 md:bottom-6 md:w-60"}/>
+                <Button type={"button"} title={"Cadastar Paciente"} onClick={(e) => submitForm(e)} className={"m-0 p-2 w-full md:absolute md:right-12 md:bottom-6 md:w-60"} />
             </div>
         </form>
     </div>

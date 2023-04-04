@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { FaSearch, FaTimes } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 import Input from "./Input";
 
 interface SearchProps {
@@ -10,7 +9,7 @@ interface SearchProps {
     className?: string;
     disabled?: boolean;
     classNameComponent?: string;
-    onClick?:() => void;
+    onClick?: () => void;
 }
 
 const Search = ({ label, onChange, value, disabled, classNameComponent, onClick }: SearchProps) => {
@@ -18,13 +17,11 @@ const Search = ({ label, onChange, value, disabled, classNameComponent, onClick 
 
     return <div className={classNameComponent}>
         <div className={"relative"}>
-            <div className={"w-full sm:w-40 lg:w-48 xl:w-72 my-10 sm:my-0"}>
-                <Input label={label} onChange={onChange} value={value} disabled={disabled} />
-            </div>
-           <FaSearch onClick={onClick} className={"absolute top-2 right-7  text-2xl text-blue-500 hover:text-blue-800"}/>
-                
+            <Input divclass={"w-full sm:w-40 lg:w-48 xl:w-72 my-10 sm:my-0"} label={label} onChange={onChange} value={value} disabled={disabled} />
+            <FaSearch onClick={onClick} className={"absolute top-2 right-7  text-2xl text-blue-500 hover:text-blue-800"} />
+
         </div>
-        </div>
+    </div>
 }
 
 export default Search

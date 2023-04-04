@@ -11,6 +11,9 @@ const CPFlen = 11;
 const nascimentoMinLength = 10;
 const nascimentoMaxLength = 10;
 
+const celularMinLength = 8;
+const celularMaxLength = 20;
+
 const errors = {
     nomeMinLength: (length: number) =>
         `O nome precisa ter pelo menos ${length} caracteres`,
@@ -27,7 +30,15 @@ const errors = {
     nascimentoMaxLength: () =>
         `A data de nascimento precisa estar no formado dd/mm/aaaa`,
     cpfLen: () => 
-        "CPF inválido"
+        "CPF inválido",
+    celularMinLength:(length: number)=>
+        `Celular deve ter no mínimo ${length} números`,
+    
+    celularMaxLength:(length: number)=>
+        `Celular deve ter no mínimo ${length} números`,
+    idade:()=>{
+
+    }
     
 };
 
@@ -41,9 +52,10 @@ const nome = z
     });
 
 const idade = z
-    .string()
-    .transform((value) => Number(value))
-    .refine((value) => Number.isInteger(value) && value >= 0 && value <= 100)
+    .number()
+    .refine((value) => Number.isInteger(value) && value >= 1 && value <= 100,{
+        message:"Idade inválida"
+    })
 
 const sexo = z
     .string()
@@ -62,9 +74,20 @@ const data_nascimento = z
 
 const email = z
     .string()
+    .toLowerCase()
+    .regex( /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
+    {
+        message:"Email inválido"
+    })
 //TODO: Criar Regex
 const celular = z
     .string()
+    .min(celularMinLength, {
+        message: errors.celularMinLength(celularMinLength)
+    })
+    .max(celularMaxLength, {
+        message: errors.celularMaxLength(celularMaxLength)
+    });
 //TODO: Criar Regex
 
 const cpf = z

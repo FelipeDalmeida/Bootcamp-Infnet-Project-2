@@ -142,8 +142,7 @@ export const putExams = async (id: number, data: Partial<Antropometrica | CompCo
     if (type === "avantropometrica") {
         const validExame = await avAntropometricaSchema.safeParseAsync(data);
         if (!validExame.success) {
-            //console.log(validExame.error)
-            //console.log(validExame.success)
+            console.log(validExame.error)
             return {
                 success: false,
                 errors: validExame.error.errors
@@ -178,7 +177,7 @@ export const putExams = async (id: number, data: Partial<Antropometrica | CompCo
     } else if(type === "compcorp"){
         const validExame = await compcorpSchema.safeParseAsync(data);
         if (!validExame.success) {
-            //console.log(validExame.error)
+            console.log(validExame.error)
             return {
                 success: false,
                 errors: validExame.error.errors
