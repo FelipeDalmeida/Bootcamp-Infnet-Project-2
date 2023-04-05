@@ -8,6 +8,8 @@ import Text from "../components/Text"
 import { useNavigate } from "react-router";
 import { delay } from "../service/delay"
 import { useParams } from "react-router-dom"
+import { compcorpSchema } from "../schemas/examsSchema"
+import { setFormErrorsValid } from "../service/formValidation"
 
 
 const text = {
@@ -39,11 +41,21 @@ const CadastraAvCompCorp = ({ }) => {
         musculos_esqueleticos: "",
         idade_corporal: "",
     })
-    const [, cadastroPaciente] = useAxios(
+
+    const [errors, setErrors] = useState<any>({
+        massa: "",
+        imc: "",
+        gordura_corporal: "",
+        gordura_visceral: "",
+        metabolismo_basal: "",
+        musculos_esqueleticos: "",
+        idade_corporal: "",
+    })
+
+    const [, cadastroComcorp] = useAxios(
         {
             url: `/compcorp/${id}`,
             method: 'post',
-            data: form,
 
         },
 
@@ -54,7 +66,41 @@ const CadastraAvCompCorp = ({ }) => {
 
     const sendData = async (e: any) => {
         e.preventDefault();
-        await cadastroPaciente()
+
+        const validForm = await compcorpSchema.safeParseAsync(form);
+
+        const erros: any = {
+            massa: "",
+            imc: "",
+            gordura_corporal: "",
+            gordura_visceral: "",
+            metabolismo_basal: "",
+            musculos_esqueleticos: "",
+            idade_corporal: "",
+        }
+
+        if (!validForm.success) {
+
+
+
+            setFormErrorsValid(validForm, errors, setErrors, erros)
+            console.log(errors)
+            return false
+        }
+
+        const { massa, imc, gordura_corporal, gordura_visceral, metabolismo_basal, musculos_esqueleticos, idade_corporal } = validForm.data
+        await cadastroComcorp({
+            data: {
+                massa: massa,
+                imc: imc,
+                gordura_corporal: gordura_corporal,
+                gordura_visceral: gordura_visceral,
+                metabolismo_basal: metabolismo_basal,
+                musculos_esqueleticos: musculos_esqueleticos,
+                idade_corporal: idade_corporal,
+            }
+        })
+        setErrors(erros)
 
         goToPage(`${id}`)
 
@@ -64,13 +110,13 @@ const CadastraAvCompCorp = ({ }) => {
 
 
     const inputs = [
-        <Input label={text.labelMassa} onChange={(e: any) => setForm({ ...form, massa: e.target.value })} value={form.massa} />,
-        <Input label={text.labelIMC} onChange={(e: any) => setForm({ ...form, imc: e.target.value })} value={form.imc} />,
-        <Input label={text.labelGordura_Corporal} onChange={(e: any) => setForm({ ...form, gordura_corporal: e.target.value })} value={form.gordura_corporal} />,
-        <Input label={text.labelGordura_Visceral} onChange={(e: any) => setForm({ ...form, gordura_visceral: e.target.value })} value={form.gordura_visceral} />,
-        <Input label={text.labelMetabolismo_Basal} onChange={(e: any) => setForm({ ...form, metabolismo_basal: e.target.value })} value={form.metabolismo_basal} />,
-        <Input label={text.labelMusculos_Esqueleticos} onChange={(e: any) => setForm({ ...form, musculos_esqueleticos: e.target.value })} value={form.musculos_esqueleticos} />,
-        <Input label={text.labelIdade_Corporal} onChange={(e: any) => setForm({ ...form, idade_corporal: e.target.value })} value={form.idade_corporal} />,
+        <Input label={text.labelMassa} onChange={(e: any) => setForm({ ...form, massa: e.target.value })} value={form.massa} error={errors.massa}/>,
+        <Input label={text.labelIMC} onChange={(e: any) => setForm({ ...form, imc: e.target.value })} value={form.imc} error={errors.imc}/>,
+        <Input label={text.labelGordura_Corporal} onChange={(e: any) => setForm({ ...form, gordura_corporal: e.target.value })} value={form.gordura_corporal} error={errors.gordura_corporal}/>,
+        <Input label={text.labelGordura_Visceral} onChange={(e: any) => setForm({ ...form, gordura_visceral: e.target.value })} value={form.gordura_visceral} error={errors.gordura_visceral}/>,
+        <Input label={text.labelMetabolismo_Basal} onChange={(e: any) => setForm({ ...form, metabolismo_basal: e.target.value })} value={form.metabolismo_basal} error={errors.metabolismo_basal}/>,
+        <Input label={text.labelMusculos_Esqueleticos} onChange={(e: any) => setForm({ ...form, musculos_esqueleticos: e.target.value })} value={form.musculos_esqueleticos} error={errors.musculos_esqueleticos}/>,
+        <Input label={text.labelIdade_Corporal} onChange={(e: any) => setForm({ ...form, idade_corporal: e.target.value })} value={form.idade_corporal} error={errors.idade_corporal}/>,
     ]
 
     return <div className={"h-[calc(100vh-theme(spacing.20))] md:h-auto p-2 grid grid-cols-12 gap-4 "}>
@@ -78,7 +124,7 @@ const CadastraAvCompCorp = ({ }) => {
             <Text className={"text-center mt-6 text-4xl"} type={"h1"} text={text.labelTitle} />
             <CriaForm inputs={inputs} className={"grid-cols-1 md:grid-cols-2 lg:grid-cols-3"} />
             <div className={"mx-10 "}>
-                <Button title={text.labelButtonCadastro} className={"m-0 p-2 w-full md:absolute md:right-12 md:bottom-6 md:w-60"} onClick={sendData} />
+                <Button title={text.labelButtonCadastro} className={"m-0 p-2 w-full md:absolute md:right-12 md:bottom-6 md:w-60"} onClick={async(e)=>sendData(e)} />
             </div>
         </form>
     </div>

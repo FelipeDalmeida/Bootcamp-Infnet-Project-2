@@ -29,7 +29,7 @@ const Nav = ({ className, anchor, anchor2 }: NaVProps) => {
         <div className={"md:mx-4  flex justify-between md:justify-end items-center"}>
             <span className={"h-20 pl-2 py-1 md:w-1/3 lg:w-2/4 xl:w-2/3"}><Img img={Logo} /></span>
             <div className={"hidden md:flex justify-around md:w-2/4 lg:w-1/3 xl:w-1/4 [&>a]:text-sky-700 [&>a]:cursor-pointer text-lg"}>{anchor}</div>
-            <span className={"border-l border-y-slate-500 hidden md:flex justify-around p-2 md:w-1/3 lg:w-1/6 xl:w-1/6 [&>a]:text-sky-700 [&>a]:cursor-pointer text-lg"}>{anchor2}</span>
+            <span className={"items-center border-l border-y-slate-500 hidden md:flex justify-around p-2 md:w-1/3 lg:w-1/4 xl:w-1/5 [&>a]:text-sky-700 [&>a]:cursor-pointer text-lg"}>{anchor2}</span>
             <button className={"md:hidden px-6"}>{<FaBars className={"text-sky-700 h-10 w-5"} onClick={changeState} />}</button>
 
         </div>

@@ -3,7 +3,7 @@ dotenv.config();
 
 import express from 'express';
 import cors from 'cors';
-import { auth } from './routes/auth'
+import { auth } from './controllers/auth'
 import { pacientesController } from "./controllers/PacientesController";
 import { antropometricaController } from "./controllers/AvAntropometricaController";
 import { compcorpController } from "./controllers/CompCorpController";

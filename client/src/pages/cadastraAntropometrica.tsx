@@ -7,6 +7,8 @@ import { Antropometrica } from "../types/types"
 import Text from "../components/Text"
 import { useNavigate } from "react-router";
 import { useParams } from "react-router-dom"
+import { avAntropometricaSchema } from "../schemas/examsSchema"
+import { setFormErrorsValid } from "../service/formValidation"
 
 
 const text = {
@@ -43,11 +45,23 @@ const CadastraAvAntropometrica = ({ }) => {
         altura_joelho: "",
         altura_tornozelo: "",
     })
+
+    const [errors, setErrors] = useState<any>({
+        estatura: "",
+        comprimento_pe: "",
+        altura_ombro: "",
+        largura_ombro: "",
+        envergadura: "",
+        altura_quadril: "",
+        largura_quadril: "",
+        altura_joelho: "",
+        altura_tornozelo: "",
+    })
+
     const [, cadastroAntropometrica] = useAxios(
         {
             url: `/antropometrica/${id}`,
             method: 'post',
-            data: form,
 
         },
 
@@ -58,7 +72,45 @@ const CadastraAvAntropometrica = ({ }) => {
 
     const sendData = async (e: any) => {
         e.preventDefault();
-        await cadastroAntropometrica()
+
+        const validForm = await avAntropometricaSchema.safeParseAsync(form);
+
+        const erros: any = {
+            estatura: "",
+            comprimento_pe: "",
+            altura_ombro: "",
+            largura_ombro: "",
+            envergadura: "",
+            altura_quadril: "",
+            largura_quadril: "",
+            altura_joelho: "",
+            altura_tornozelo: "",
+        }
+
+        if (!validForm.success) {
+
+
+
+            setFormErrorsValid(validForm, errors, setErrors, erros)
+            console.log(errors)
+            return false
+        }
+
+        const { estatura, comprimento_pe, altura_ombro, largura_ombro, envergadura, altura_quadril, largura_quadril, altura_joelho, altura_tornozelo } = validForm.data
+        await cadastroAntropometrica({
+            data: {
+                estatura: estatura,
+                comprimento_pe: comprimento_pe,
+                altura_ombro: altura_ombro,
+                largura_ombro: largura_ombro,
+                envergadura: envergadura,
+                altura_quadril: altura_quadril,
+                largura_quadril: largura_quadril,
+                altura_joelho: altura_joelho,
+                altura_tornozelo: altura_tornozelo,
+            }
+        })
+        setErrors(erros)
 
         goToPage(`${id}`)
 
@@ -67,15 +119,15 @@ const CadastraAvAntropometrica = ({ }) => {
     }
 
     const inputs = [
-        <Input label={text.labelEstatura} onChange={(e: any) => setForm({ ...form, estatura: e.target.value })} value={form.estatura}/>,
-        <Input label={text.labelComprimento_Pe} onChange={(e: any) => setForm({ ...form, comprimento_pe: e.target.value })} value={form.comprimento_pe}/>,
-        <Input label={text.labelAltura_Ombro} onChange={(e: any) => setForm({ ...form, altura_ombro: e.target.value })} value={form.altura_ombro}/>,
-        <Input label={text.labelLargura_Ombro} onChange={(e: any) => setForm({ ...form, largura_ombro: e.target.value })} value={form.largura_ombro}/>,
-        <Input label={text.labelEnvergadura} onChange={(e: any) => setForm({ ...form, envergadura: e.target.value })} value={form.envergadura}/>,
-        <Input label={text.labelAltura_Quadril} onChange={(e: any) => setForm({ ...form, altura_quadril: e.target.value })} value={form.altura_quadril}/>,
-        <Input label={text.labelLargura_Quadril} onChange={(e: any) => setForm({ ...form, largura_quadril: e.target.value })} value={form.largura_quadril}/>,
-        <Input label={text.labelAltura_Joelho} onChange={(e: any) => setForm({ ...form, altura_joelho: e.target.value })} value={form.altura_joelho}/>,
-        <Input label={text.labelAltura_Tornozelo} onChange={(e: any) => setForm({ ...form, altura_tornozelo: e.target.value })} value={form.altura_tornozelo}/>,
+        <Input label={text.labelEstatura} onChange={(e: any) => setForm({ ...form, estatura: e.target.value })} value={form.estatura} error={errors.estatura}/>,
+        <Input label={text.labelComprimento_Pe} onChange={(e: any) => setForm({ ...form, comprimento_pe: e.target.value })} value={form.comprimento_pe} error={errors.comprimento_pe}/>,
+        <Input label={text.labelAltura_Ombro} onChange={(e: any) => setForm({ ...form, altura_ombro: e.target.value })} value={form.altura_ombro} error={errors.altura_ombro}/>,
+        <Input label={text.labelLargura_Ombro} onChange={(e: any) => setForm({ ...form, largura_ombro: e.target.value })} value={form.largura_ombro} error={errors.largura_ombro}/>,
+        <Input label={text.labelEnvergadura} onChange={(e: any) => setForm({ ...form, envergadura: e.target.value })} value={form.envergadura} error={errors.envergadura}/>,
+        <Input label={text.labelAltura_Quadril} onChange={(e: any) => setForm({ ...form, altura_quadril: e.target.value })} value={form.altura_quadril} error={errors.altura_quadril}/>,
+        <Input label={text.labelLargura_Quadril} onChange={(e: any) => setForm({ ...form, largura_quadril: e.target.value })} value={form.largura_quadril} error={errors.largura_quadril}/>,
+        <Input label={text.labelAltura_Joelho} onChange={(e: any) => setForm({ ...form, altura_joelho: e.target.value })} value={form.altura_joelho} error={errors.altura_joelho}/>,
+        <Input label={text.labelAltura_Tornozelo} onChange={(e: any) => setForm({ ...form, altura_tornozelo: e.target.value })} value={form.altura_tornozelo} error={errors.altura_tornozelo}/>,
     ]
 
     return <div className={"h-[calc(100vh-theme(spacing.20))] md:h-auto p-2 grid grid-cols-12 gap-4 "}>

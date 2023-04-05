@@ -4,10 +4,10 @@ import Button from "../components/Button";
 
 
 
-const Header = ({ setIsAuth }: any) => {
+const Header = ({ setIsAuth, user }: any) => {
 
     const anchor = [<Link to='/cadastro'>{"Cadastar Paciente"}</Link>, <Link to='/pacientes'>{"Pacientes"}</Link>]
-    const anchor2 = [<Button className={"mt-6 md:mt-1"} title={"Logout"} onClick={() => setIsAuth(false)} />]
+    const anchor2 = [<Button className={"mt-6 md:mt-1"} title={"Logout"} onClick={() => setIsAuth(false)} />,<div className={" self-center"}>{user}</div>]
 
     return <Nav anchor={anchor} anchor2={anchor2} />
 }

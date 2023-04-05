@@ -13,6 +13,8 @@ import ListaCompCorp from "../components/ListaComposicaoCorporal"
 import ListaAvAntropometrica from "../components/ListaAvAntropometrica"
 import Select from "../components/Select"
 import { useZorm } from "react-zorm";
+import { pacienteSchema } from "../schemas/pacienteSchema"
+import { setFormErrorsValid } from "../service/formValidation"
 
 const text = {
     labelNome: "Nome",
@@ -48,6 +50,16 @@ const PacientePage = ({ }) => {
 
     const [form, setForm] = useState(forminicial);
     const [disabled, setDisabled] = useState(true)
+    const [errors, setErrors] = useState<any>({
+        nome: "",
+        idade: "",
+        sexo: "",
+        data_nascimento: "",
+        data_cadastro: "",
+        email: "",
+        cpf: "",
+        celular: ""
+    })
 
     const [{ data: infoPaciente }, getPaciente] = useAxios<Pacientes>(
         {
@@ -63,9 +75,6 @@ const PacientePage = ({ }) => {
         {
             url: `/pacientes/${id}`,
             method: "put",
-            data: {
-                ...form
-            }
         },
         {
             manual: true,
@@ -82,14 +91,54 @@ const PacientePage = ({ }) => {
         }
     );
 
-
+    
 
     const editarForm = () => {
         setDisabled(!disabled)
     }
 
-    const atualizaForm = () => {
-        editPaciente()
+    const atualizaForm = async(e: any) => {
+
+        e.preventDefault();
+
+        const validForm = await pacienteSchema.safeParseAsync(form);
+
+        const erros: any = {
+            nome: "",
+            idade: "",
+            sexo: "",
+            data_nascimento: "",
+            data_cadastro: "",
+            email: "",
+            cpf: "",
+            celular: ""
+        }
+
+        if (!validForm.success) {
+
+
+
+            setFormErrorsValid(validForm, errors, setErrors, erros)
+            console.log(errors)
+            return false
+        }
+
+        const { nome, idade, sexo, email, celular, cpf, data_nascimento } = validForm.data
+        await editPaciente({
+            data: {
+                nome: nome,
+                idade: idade,
+                sexo: sexo,
+                data_nascimento: data_nascimento,
+                cpf: cpf,
+                email: email,
+                celular: celular
+            }
+        })
+
+        setErrors(erros)
+
+        console.log("Atualizado")
         setDisabled(true)
     }
 
@@ -107,23 +156,24 @@ const PacientePage = ({ }) => {
 
     useEffect(() => {
         if (infoPaciente) {
-            setForm(infoPaciente);
+            setForm({...infoPaciente,idade:String(infoPaciente.idade)});
         }
     }, [infoPaciente]);
 
     const inputs = [
 
-        <Input label={text.labelNome} onChange={(e: any) => setForm({ ...form, nome: e.target.value })} value={form.nome} disabled={disabled} />,
-        <Input label={text.labelIdade} onChange={(e: any) => setForm({ ...form, idade: e.target.value })} value={form.idade} disabled={disabled} />,
-        <Select label={"Sexo"} value={form.sexo} onChange={(e: any) => setForm({ ...form, sexo: e.target.value })} options={[
+        <Input label={text.labelNome} onChange={(e: any) => setForm({ ...form, nome: e.target.value })} value={form.nome} disabled={disabled} error={errors.nome}/>,
+        <Input label={text.labelIdade} onChange={(e: any) => setForm({ ...form, idade:e.target.value })} value={form.idade} disabled={disabled} error={errors.idade}/>,
+        <Select label={"Sexo"} value={form.sexo} onChange={(e: any) => setForm({ ...form, sexo: e.target.value })} error={errors.sexo}
+        options={[
             <option value={"Masculino"}>Masculino</option>,
             <option value={"Feminino"}>Feminino</option>,]
         } disabled={disabled} />,
-        <Input label={text.labelCpf} onChange={(e: any) => setForm({ ...form, cpf: e.target.value })} value={form.cpf} disabled={disabled} />,
-        <Input label={text.labelCelular} onChange={(e: any) => setForm({ ...form, celular: e.target.value })} value={form.celular} disabled={disabled} />,
-        <Input label={text.labelEmail} onChange={(e: any) => setForm({ ...form, email: e.target.value })} value={form.email} disabled={disabled} />,
-        <Input label={text.labelData_Nascimento} onChange={(e: any) => setForm({ ...form, data_nascimento: e.target.value })} value={form.data_nascimento} disabled={disabled} />,
-        <Input label={text.labelData_Cadastro} onChange={(e: any) => setForm({ ...form, data_cadastro: e.target.value })} value={form.data_cadastro} disabled={disabled} />,
+        <Input label={text.labelCpf} onChange={(e: any) => setForm({ ...form, cpf: e.target.value })} value={form.cpf} disabled={disabled} error={errors.cpf}/>,
+        <Input label={text.labelCelular} onChange={(e: any) => setForm({ ...form, celular: e.target.value })} value={form.celular} disabled={disabled} error={errors.celular}/>,
+        <Input label={text.labelEmail} onChange={(e: any) => setForm({ ...form, email: e.target.value })} value={form.email} disabled={disabled} error={errors.email}/>,
+        <Input label={text.labelData_Nascimento} onChange={(e: any) => setForm({ ...form, data_nascimento: e.target.value })} value={form.data_nascimento} disabled={disabled} error={errors.data_nascimento}/>,
+        <Input label={text.labelData_Cadastro} onChange={(e: any) => setForm({ ...form, data_cadastro: e.target.value })} value={form.data_cadastro} disabled={true} error={errors.nome}/>,
     ]
 
     return <> <div className={"md:h-auto p-2 grid grid-cols-12 gap-4 "}>
@@ -135,10 +185,10 @@ const PacientePage = ({ }) => {
 
             </form>
 
-            <button className={`absolute  top-2 left-6 ${disabled ? "hidden" : ""}`}>{<FaTrashAlt className={"text-red-700 h-10 w-5"} onClick={deletaForm} />}</button>
+            <button className={`absolute  top-2 left-6 ${disabled ? "hidden" : ""}`}>{<FaTrashAlt className={"text-red-700 h-10 w-5"} onClick={async()=>await deletaForm()} />}</button>
             <button className={`absolute top-3 right-6`}>{<FaPen className={"text-blue-500 hover:text-blue-800 h-10 w-5"} onClick={() => { editarForm() }} title={text.labelPen} />}</button>
             <div className={`mx-10 ${disabled ? "hidden" : ""}`}>
-                <Button title={text.labelButtonAtualizar} className={"m-0 p-2 w-full md:absolute md:right-12 md:bottom-6 md:w-60"} onClick={atualizaForm} />
+                <Button title={text.labelButtonAtualizar} className={"m-0 p-2 w-full md:absolute md:right-12 md:bottom-6 md:w-60"} onClick={async(e)=>await atualizaForm(e)} />
             </div>
         </div>
 

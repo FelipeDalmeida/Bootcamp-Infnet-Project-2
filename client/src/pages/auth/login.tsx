@@ -7,6 +7,7 @@ import Img from "../../components/Img"
 import Logo from '../../assets/img/logo192.png'
 import { useNavigate } from "react-router-dom"
 import { useAxios } from "../../service/useAxios"
+import { criaNome } from "../../service/stringManipulation"
 
 const text = {
     labelEmail: "E-mail",
@@ -16,7 +17,7 @@ const text = {
     labelButtonRegister: "Registrar-se"
 }
 
-const Login = ({ setIsAuth }: any) => {
+const Login = ({ setIsAuth,setUser }: any) => {
     const navigate = useNavigate();
     const goToPage = (page: string) => { navigate(`${page}`) }
 
@@ -43,6 +44,8 @@ const Login = ({ setIsAuth }: any) => {
             if (response) {
                 setIsAuth(true)
                 setLoginData({ ...loginData, error: "" })
+                const nome=criaNome(loginData.email)
+                setUser(nome)
             }
         })
             .catch((error) => {
@@ -68,7 +71,7 @@ const Login = ({ setIsAuth }: any) => {
             <CriaForm inputs={inputs} className={"my-2 grid-cols-1"} />
             <div className={"mx-10 "}>
                 <Button title={text.labelButton} className={"m-0 my-3 p-2 w-full "} onClick={sendLogin} />
-                <Button title={text.labelButtonRegister} className={"m-0 my-3 p-2 w-full "} onClick={() => { goToPage('/registro') }} />
+                <Button type={"button"} title={text.labelButtonRegister} className={"m-0 my-3 p-2 w-full "} onClick={() => { goToPage('/registro') }} />
             </div>
         </div>
     </div>

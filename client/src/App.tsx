@@ -6,8 +6,8 @@ import Load from './components/load/Load';
 import { useAxios } from '../src/service/useAxios'
 function App() {
 
-const [isAuth,setIsAuth]=useState(true) //TODO: Mudar valor para false após desenvolvimento - Mock
-
+const [isAuth,setIsAuth]=useState(false) //TODO: Mudar valor para false após desenvolvimento - Mock
+const [user,setUser]=useState("")
 
 const CadastraPaciente =lazy(()=>import('./pages/CadastraPaciente'))
 const ListaPacientes =lazy(()=>import('./pages/ListaPacientes'))
@@ -23,9 +23,9 @@ if(!isAuth){
   return ( <Router>   
     <Suspense fallback={<Load/>}>
     <Routes>
-      <Route path="/" element={<Login setIsAuth={setIsAuth}/>}/>
-      <Route path="*" element={<Login setIsAuth={setIsAuth}/>}/>
-      <Route path="/registro" element={<Register setIsAuth={setIsAuth}/>}/>
+      <Route path="/" element={<Login setIsAuth={setIsAuth} setUser={setUser}/>}/>
+      <Route path="*" element={<Login setIsAuth={setIsAuth} setUser={setUser}/>}/>
+      <Route path="/registro" element={<Register setIsAuth={setIsAuth} setUser={setUser}/>}/>
     
     </Routes>
     </Suspense>
@@ -36,7 +36,7 @@ if(!isAuth){
       <Router>  
             
         <Suspense fallback={<Load/>}>
-        <Header setIsAuth={setIsAuth}/>
+        <Header setIsAuth={setIsAuth} user={user}/>
         <Routes>
           <Route path="/" element={<CadastraPaciente/>}/>
           <Route path="/cadastro" element={<CadastraPaciente/>}/>

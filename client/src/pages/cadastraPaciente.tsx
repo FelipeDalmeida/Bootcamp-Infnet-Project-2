@@ -69,19 +69,19 @@ const CadastraPaciente = ({ }) => {
 
         const validForm = await pacienteSchema.safeParseAsync(form);
 
-
+        const erros: any = {
+            nome: "",
+            idade: "",
+            sexo: "",
+            data_nascimento: "",
+            cpf: "",
+            email: "",
+            celular: ""
+        }
 
         if (!validForm.success) {
 
-            const erros: any = {
-                nome: "",
-                idade: "",
-                sexo: "",
-                data_nascimento: "",
-                cpf: "",
-                email: "",
-                celular: ""
-            }
+
 
             setFormErrorsValid(validForm, errors, setErrors, erros)
             console.log(errors)
@@ -100,8 +100,8 @@ const CadastraPaciente = ({ }) => {
                 celular: celular
             }
         })
-
-        console.log("cadastrado")
+        setErrors(erros)
+        console.log("Cadastrado")
         await delay(0.5)
         goToPage("")
 
@@ -133,7 +133,7 @@ const CadastraPaciente = ({ }) => {
             <Text className={"text-center mt-6 text-4xl"} type={"h1"} text={"Cadastro"} />
             <CriaForm inputs={inputs} className={"grid-cols-1 md:grid-cols-2 lg:grid-cols-3"} />
             <div className={"mx-10 "}>
-                <Button type={"button"} title={"Cadastar Paciente"} onClick={(e) => submitForm(e)} className={"m-0 p-2 w-full md:absolute md:right-12 md:bottom-6 md:w-60"} />
+                <Button type={"button"} title={"Cadastar Paciente"} onClick={async(e) => await submitForm(e)} className={"m-0 p-2 w-full md:absolute md:right-12 md:bottom-6 md:w-60"} />
             </div>
         </form>
     </div>

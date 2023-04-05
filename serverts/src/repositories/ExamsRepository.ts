@@ -40,7 +40,7 @@ export const postExam = async (id: number, data: Antropometrica | CompCorp, type
     let validExame;
 
     if (type === "avantropometrica") {
-        validExame = await avAntropometricaSchemaPost.safeParseAsync(data);
+        validExame = await avAntropometricaSchema.safeParseAsync(data);
         if (!validExame.success) {
             console.log(validExame.error)
             return {
@@ -85,7 +85,7 @@ export const postExam = async (id: number, data: Antropometrica | CompCorp, type
         }
 
     } else if (type === "compcorp") {
-        validExame = await compcorpSchemaPost.safeParseAsync(data);
+        validExame = await compcorpSchema.safeParseAsync(data);
         if (!validExame.success) {
             console.log(validExame.error)
             return {

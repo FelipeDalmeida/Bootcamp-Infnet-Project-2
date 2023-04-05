@@ -7,6 +7,7 @@ import Img from "../../components/Img"
 import Logo from '../../assets/img/logo192.png'
 import { useNavigate } from "react-router-dom"
 import { useAxios } from "../../service/useAxios"
+import { criaNome } from "../../service/stringManipulation"
 
 const text = {
     labelEmail: "E-mail",
@@ -18,7 +19,7 @@ const text = {
     labelButtonLogin: "Ir para Login"
 }
 
-const Register = ({ setIsAuth }: any) => {
+const Register = ({ setIsAuth,setUser }: any) => {
     const navigate = useNavigate();
     const goToPage = (page: string) => { navigate(`${page}`) }
 
@@ -42,7 +43,13 @@ const Register = ({ setIsAuth }: any) => {
     const registar = async () => {
 
 
-        await realizaRegistro().then(response => { if (response) { setIsAuth(true); goToPage("/") } })
+        await realizaRegistro().then(response => { 
+            if (response) { 
+                setIsAuth(true); 
+                const nome=criaNome(registro.email)
+                setUser(nome)
+                goToPage("/") 
+            } })
             .catch((error) => {
                 if (error) {
                     setRegistro({ ...registro, error: "Erro no registro" })
@@ -68,8 +75,8 @@ const Register = ({ setIsAuth }: any) => {
             <CriaForm inputs={inputs} className={"my-2 grid-cols-1"} />
 
             <div className={"mx-10 "}>
-                <Button title={text.labelButton} className={"m-0 my-3 p-2 w-full "} onClick={registar} />
-                <Button title={text.labelButtonLogin} className={"m-0 my-3 p-2 w-full "} onClick={() => { goToPage('/') }} />
+                <Button type={"submit"} title={text.labelButton} className={"m-0 my-3 p-2 w-full "} onClick={registar} />
+                <Button type={"button"} title={text.labelButtonLogin} className={"m-0 my-3 p-2 w-full "} onClick={() => { goToPage('/') }} />
             </div>
         </div>
     </div>

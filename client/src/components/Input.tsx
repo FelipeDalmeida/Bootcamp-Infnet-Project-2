@@ -43,7 +43,7 @@ const Input = ({ label, type, name, id, placeholder, onChange, value, className,
         value={value}
         disabled={disabled}
       />
-      <button className="absolute right-3 bottom-3 text-xl" onClick={changePasswordVisibility}>{type === 'password' ? (showPassorwd ? <FaEyeSlash /> : <FaEye />) : null}</button>
+      <button type="button" className="absolute right-3 bottom-3 text-xl" onClick={changePasswordVisibility}>{type === 'password' ? (showPassorwd ? <FaEyeSlash /> : <FaEye />) : null}</button>
     </div>
     <p className="pl-4 text-rose-600 text-xs">{error ? error : ""}</p>
   </div>
