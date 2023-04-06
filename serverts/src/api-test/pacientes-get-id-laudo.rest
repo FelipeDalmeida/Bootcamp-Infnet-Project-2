@@ -1,0 +1,2 @@
+GET http://localhost:8080/pacientes/laudo/7
+Content-Type: application/json

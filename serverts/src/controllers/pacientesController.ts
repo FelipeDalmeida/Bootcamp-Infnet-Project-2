@@ -26,6 +26,17 @@ pacientesController.get('/:id', async (req, res) => {
     res.status(200).json(Paciente)
 });
 
+//carrega laudo dos ultimos exames de um paciente
+pacientesController.get('/laudo/:id', async (req, res) => {
+    const laudo = await pacientesRepository.getLaudo(Number(req.params.id))
+    if(laudo.success){
+        res.status(200).json(laudo)
+    } else {
+        res.status(400).json(laudo)
+    }
+    
+});
+
 //add um paciente novo
 pacientesController.post('/', async (req, res) => {
 

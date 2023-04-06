@@ -6,7 +6,7 @@ import Load from './components/load/Load';
 import { useAxios } from '../src/service/useAxios'
 function App() {
 
-const [isAuth,setIsAuth]=useState(false) //TODO: Mudar valor para false após desenvolvimento - Mock
+const [isAuth,setIsAuth]=useState(false)
 const [user,setUser]=useState("")
 
 const CadastraPaciente =lazy(()=>import('./pages/CadastraPaciente'))
@@ -18,6 +18,7 @@ const CadastraAvAntropometrica=lazy(()=>import('./pages/CadastraAntropometrica')
 const AvAntropometrica =lazy(()=>import('./pages/Antropometrica'))
 const Login =lazy(()=>import('./pages/auth/Login'))
 const Register =lazy(()=>import('./pages/auth/Registro'))
+const Laudo =lazy(()=>import('./pages/Laudo'))
 
 if(!isAuth){ 
   return ( <Router>   
@@ -46,6 +47,7 @@ if(!isAuth){
           <Route path="/compcorp/:id" element={<AvCompCorp/>}/>
           <Route path="/cadastroantropometrica/:id" element={<CadastraAvAntropometrica/>}/>
           <Route path="/antropometrica/:id" element={<AvAntropometrica/>}/>
+          <Route path="/laudo/:id" element={<Laudo/>}/>
         
         </Routes>
         </Suspense>

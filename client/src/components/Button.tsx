@@ -11,7 +11,7 @@ interface ButtonProps {
 
 const Button = ({ title, type, onClick, className, fullwidth, iconBack, iconFront, disabled }: ButtonProps) => {
 
-  className = `p-1 m-1 w-36 font-bold text-white bg-blue-500 border border-blue-500 rounded-xl hover:border-blue-800 hover:bg-blue-800 [&>*]:inline  ${className}`
+  className = `p-1 mb-6 md:m-1 w-36 font-bold text-white bg-blue-500 border border-blue-500 rounded-xl hover:border-blue-800 hover:bg-blue-800 [&>*]:inline  ${className}`
   fullwidth ? className = `${className} w-full` : className = className
 
 

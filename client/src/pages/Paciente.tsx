@@ -7,7 +7,7 @@ import { Pacientes } from "../types/types"
 import Text from "../components/Text"
 import { useNavigate } from "react-router";
 import { useParams } from "react-router-dom"
-import { FaTrashAlt, FaPen } from "react-icons/fa";
+import { FaTrashAlt, FaPen, FaPrint } from "react-icons/fa";
 import { delay } from "../service/delay"
 import ListaCompCorp from "../components/ListaComposicaoCorporal"
 import ListaAvAntropometrica from "../components/ListaAvAntropometrica"
@@ -26,7 +26,8 @@ const text = {
     labelPen: "Editar Paciente",
     labelCpf: "CPF",
     labelCelular: "Celular",
-    labelEmail: "E-mail"
+    labelEmail: "E-mail",
+    labelPrint:"Gerar Laudo"
 }
 
 const PacientePage = ({ }) => {
@@ -91,7 +92,6 @@ const PacientePage = ({ }) => {
         }
     );
 
-    
 
     const editarForm = () => {
         setDisabled(!disabled)
@@ -187,6 +187,7 @@ const PacientePage = ({ }) => {
 
             <button className={`absolute  top-2 left-6 ${disabled ? "hidden" : ""}`}>{<FaTrashAlt className={"text-red-700 h-10 w-5"} onClick={async()=>await deletaForm()} />}</button>
             <button className={`absolute top-3 right-6`}>{<FaPen className={"text-blue-500 hover:text-blue-800 h-10 w-5"} onClick={() => { editarForm() }} title={text.labelPen} />}</button>
+            <button className={`absolute top-3 right-16`}>{<FaPrint className={"text-blue-500 hover:text-blue-800 h-10 w-5"} onClick={() => { goToPage(`/laudo/${id}`) }} title={text.labelPrint} />}</button>
             <div className={`mx-10 ${disabled ? "hidden" : ""}`}>
                 <Button title={text.labelButtonAtualizar} className={"m-0 p-2 w-full md:absolute md:right-12 md:bottom-6 md:w-60"} onClick={async(e)=>await atualizaForm(e)} />
             </div>
