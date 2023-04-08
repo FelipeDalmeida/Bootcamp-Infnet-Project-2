@@ -3,7 +3,7 @@ Content-Type: application/json
 
 {
     "nome":"Rafita",
-    "idade":"29",
+    "idade":29,
     "sexo":"Feminino",
     "celular":"(21)97878765",
     "cpf":"11111111111",

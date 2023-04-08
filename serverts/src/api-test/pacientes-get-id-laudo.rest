@@ -1,2 +1,2 @@
-GET http://localhost:8080/pacientes/laudo/7
+GET http://localhost:8080/pacientes/laudo/1
 Content-Type: application/json

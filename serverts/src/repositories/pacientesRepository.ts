@@ -129,27 +129,37 @@ export const getLaudo = async (id: number) => {
     from pacientes 
     join  avantropometrica on avantropometrica.paciente_id=pacientes.id 
     join compcorp on compcorp.paciente_id=pacientes.id
-    where pacientes.id=?;`, id)) as any
-
-    console.log(response[0])
-    const success = response[0].paciente_id === id
-    connection.release()
-    if (success) {
-        return {
-            success,
-            data: {
-                ...response[0]
+    where pacientes.id=?;`, id)
+        .catch(error => {
+            if (error) {
+                console.log(error)
+                return null
+            }
+        })
+    ) as any
+    connection.release()   
+    if(response[0]){
+        
+        const success = response[0].paciente_id === id
+        
+        if (success) {
+            return {
+                success,
+                data: {
+                    ...response[0]
+                }
+            }
+        }
+    
+        else {
+            return {
+                success,
             }
         }
     }
+    
 
-    else {
-        return {
-            success,
-            data: {
-
-            }
-        }
+    return {
+        success:false,
     }
-
 }

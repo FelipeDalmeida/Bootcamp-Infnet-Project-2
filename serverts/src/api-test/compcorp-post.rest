@@ -2,11 +2,11 @@ POST  http://localhost:8080/compcorp/1
 Content-Type: application/json
 
 {
-        "massa": "85",
-        "imc": "29",
-        "gordura_corporal": "33",
-        "gordura_visceral": "9",
-        "metabolismo_basal": "1700",
-        "musculos_esqueleticos": "44",
-        "idade_corporal": "30"
+        "massa": 85,
+        "imc": 29,
+        "gordura_corporal": 33,
+        "gordura_visceral": 9,
+        "metabolismo_basal": 1700,
+        "musculos_esqueleticos": 44,
+        "idade_corporal": 30
 }

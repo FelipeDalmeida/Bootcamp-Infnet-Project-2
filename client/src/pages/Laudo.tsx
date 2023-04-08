@@ -3,10 +3,13 @@ import { useEffect, useState } from "react";
 import Input from "../components/Input";
 import Text from "../components/Text"
 import CriaForm from "../components/Criaform";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import Button from "../components/Button";
 
 //Só pode ser usado se o paciente tiver uma composição corporal e uma antropometrica
 const text = {
+    labelSemExames:"Paciente sem todos os exames cadastrados",
+    labelButtonBack:"Voltar",
     labelNome: "Nome",
     labelIdade: "Idade",
     labelData_Nascimento: "Data de nasciemnto",
@@ -37,6 +40,7 @@ const Laudo = () => {
 
     const params = useParams()
     const id = params.id;
+    const navigate = useNavigate();
 
     const forminicial = {
         nome: "",
@@ -77,7 +81,9 @@ const Laudo = () => {
     }, [])
     useEffect(() => {
         if (laudoPaciente) {
-            setForm({...laudoPaciente.data});
+            if(laudoPaciente.success){
+                setForm({...laudoPaciente.data});
+            }
         }
         console.log(form)
     }, [laudoPaciente]);
@@ -112,6 +118,7 @@ const Laudo = () => {
 
     return <div className={"md:h-auto p-2 grid grid-cols-12 gap-4 "}>
         <div className={"relative my-0 md:my-10 md:pb-10 border border-slate-200 rounded-2xl shadow-2xl shadow-blue-500/50  box-border col-start-0 col-span-12 md:col-start-2 md:col-span-10 lg:col-start-3 lg:col-span-8 xxl:col-start-4 xxl:col-span-6"}>
+            {form.nome?<>
             <div className={""}>
                 <Text className={"text-center mt-6 text-2xl md:text-4xl"} type={"h1"} text={text.labelTitulo1} />
                 <CriaForm inputs={infoPaciente} className={"grid-cols-1 md:grid-cols-2"} />
@@ -125,8 +132,11 @@ const Laudo = () => {
             <div className={""}>
                 <Text className={"text-center mt-6 text-2xl md:text-4xl"} type={"h1"} text={text.labelTitulo3} />
                 <CriaForm inputs={infoAntropometrica} className={"grid-cols-1 md:grid-cols-2 lg:grid-cols-3"} />
-            </div>
-
+            </div></>:
+            <div className={"text-center"}>
+            <Text className={"text-rose-700 text-center my-10 text-3xl"} type={"h2"} text={text.labelSemExames} />
+            <Button title={text.labelButtonBack} onClick={()=>navigate(`/pacientes/${id}`)} />
+            </div>}
         </div>
     </div>
 }

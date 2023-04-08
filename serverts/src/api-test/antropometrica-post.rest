@@ -2,13 +2,13 @@ POST  http://localhost:8080/antropometrica/1
 Content-Type: application/json
 
 {
-            "estatura": "172",
-            "comprimento_pe": "34",
-            "altura_ombro": "111",
-            "largura_ombro": "56",
-            "envergadura": "200",
-            "altura_quadril": "100",
-            "largura_quadril": "75",
-            "altura_joelho": "60",
-            "altura_tornozelo": "15"
+            "estatura": 172,
+            "comprimento_pe": 34,
+            "altura_ombro": 111,
+            "largura_ombro": 56,
+            "envergadura": 200,
+            "altura_quadril": 100,
+            "largura_quadril": 75,
+            "altura_joelho": 60,
+            "altura_tornozelo": 15
 }
