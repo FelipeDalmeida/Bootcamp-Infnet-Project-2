@@ -13,13 +13,13 @@ import { setFormErrorsValid } from "../service/formValidation"
 
 
 const text = {
-    labelMassa: "Massa",
+    labelMassa: "Massa [kg]",
     labelIMC: "IMC",
-    labelGordura_Corporal: "Gordura Corporal",
+    labelGordura_Corporal: "Gordura Corporal [%]",
     labelGordura_Visceral: "Gordural Visceral",
-    labelMetabolismo_Basal: "Metabolismo",
-    labelMusculos_Esqueleticos: "Musculos",
-    labelIdade_Corporal: "Idade Corportal",
+    labelMetabolismo_Basal: "Metabolismo [kcal]",
+    labelMusculos_Esqueleticos: "Musculos [%]",
+    labelIdade_Corporal: "Idade Corporal",
     labelButtonCadastro: "Cadastrar Avaliação",
     labelTitle: "Cadastrar Avaliação"
 }

@@ -12,13 +12,13 @@ import { compcorpSchemaPut } from "../schemas/examsSchema";
 import { setFormErrorsValid } from "../service/formValidation"
 
 const text = {
-    labelMassa: "Massa",
+    labelMassa: "Massa [kg]",
     labelIMC: "IMC",
-    labelGordura_Corporal: "Gordura Corporal",
+    labelGordura_Corporal: "Gordura Corporal [%]",
     labelGordura_Visceral: "Gordural Visceral",
-    labelMetabolismo_Basal: "Metabolismo",
-    labelMusculos_Esqueleticos: "Musculos",
-    labelIdade_Corporal: "Idade Corportal",
+    labelMetabolismo_Basal: "Metabolismo [kcal]",
+    labelMusculos_Esqueleticos: "Musculos [%]",
+    labelIdade_Corporal: "Idade Corporal",
     lavelData_Avaliação: "Data da Avaliação",
     labelButtonAtualizar: "Atualizar",
     labelTitle: "Composição Corporal"

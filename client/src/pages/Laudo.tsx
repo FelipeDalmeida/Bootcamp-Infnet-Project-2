@@ -19,7 +19,7 @@ const text = {
     labelGordura_Visceral: "Gordural Visceral",
     labelMetabolismo_Basal: "Metabolismo",
     labelMusculos_Esqueleticos: "Musculos",
-    labelIdade_Corporal: "Idade Corportal",
+    labelIdade_Corporal: "Idade Corporal",
     labelButtonCadastro: "Cadastrar Avaliação",
     labelEstatura: "Estatura",
     labelComprimento_Pe: "Comprimento do Pé",
