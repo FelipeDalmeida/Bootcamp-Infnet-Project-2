@@ -109,7 +109,7 @@ const ListaCompCorp = ({ }) => {
                         <Select
                             value={examesParams.limit}
                             onChange={(e) => { setExamesParams({ ...examesParams, limit: Number(e.target.value) }) }}
-                            className={"col-span-12 md:col-span-6"}
+                            divClassName={"col-span-12 md:col-span-6"}
                             label={text.limit}
                             options={
                                 [
@@ -124,7 +124,7 @@ const ListaCompCorp = ({ }) => {
                         <Select
                             value={examesParams.direction}
                             onChange={(e) => { setExamesParams({ ...examesParams, direction: e.target.value }) }}
-                            className={"col-span-12 md:col-span-6"}
+                            divClassName={"col-span-12 md:col-span-6"}
                             label={text.direction}
                             options={
                                 [

@@ -145,7 +145,7 @@ const ListaPacientes = ({ }) => {
                         <Select
                             value={pacientesParams.orderby}
                             onChange={(e) => { setPacientesParams({ ...pacientesParams, orderby: e.target.value }) }}
-                            className={"col-span-12 md:col-span-6"}
+                            divClassName={"col-span-12 md:col-span-6"}
                             label={text.orderby}
                             options={
                                 [
@@ -158,7 +158,7 @@ const ListaPacientes = ({ }) => {
                         <Select
                             value={pacientesParams.limit}
                             onChange={(e) => { setPacientesParams({ ...pacientesParams, limit: Number(e.target.value) }) }}
-                            className={"col-span-12 md:col-span-6"}
+                            divClassName={"col-span-12 md:col-span-6"}
                             label={text.limit}
                             options={
                                 [
@@ -173,7 +173,7 @@ const ListaPacientes = ({ }) => {
                         <Select
                             value={pacientesParams.direction}
                             onChange={(e) => { setPacientesParams({ ...pacientesParams, direction: e.target.value }) }}
-                            className={"col-span-12 md:col-span-6"}
+                            divClassName={"col-span-12 md:col-span-6"}
                             label={text.direction}
                             options={
                                 [
